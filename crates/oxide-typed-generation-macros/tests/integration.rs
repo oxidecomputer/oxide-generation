@@ -14,9 +14,9 @@ impl_typed_generation_kinds! {
 #[test]
 fn test_generated_kinds() {
     // Test that the generated kinds have the correct tags.
-    assert_eq!(UserKind::tag().as_str(), "user");
-    assert_eq!(OrganizationKind::tag().as_str(), "organization");
-    assert_eq!(ProjectKind::tag().as_str(), "project");
+    assert_eq!(UserKind::TAG.as_str(), "user");
+    assert_eq!(OrganizationKind::TAG.as_str(), "organization");
+    assert_eq!(ProjectKind::TAG.as_str(), "project");
 }
 
 #[test]
@@ -27,7 +27,7 @@ fn test_single_entry() {
         }
     }
 
-    assert_eq!(SingleKind::tag().as_str(), "single");
+    assert_eq!(SingleKind::TAG.as_str(), "single");
     let single_generation = SingleGeneration::new();
     assert_eq!(single_generation.as_u64(), 1);
 }
@@ -45,10 +45,10 @@ fn test_snake_case_conversion() {
         }
     }
 
-    assert_eq!(HTTPClientKind::tag().as_str(), "http_client");
-    assert_eq!(XMLParserKind::tag().as_str(), "xml_parser");
-    assert_eq!(UserAccountKind::tag().as_str(), "user_account");
-    assert_eq!(IOHandlerKind::tag().as_str(), "io_handler");
+    assert_eq!(HTTPClientKind::TAG.as_str(), "http_client");
+    assert_eq!(XMLParserKind::TAG.as_str(), "xml_parser");
+    assert_eq!(UserAccountKind::TAG.as_str(), "user_account");
+    assert_eq!(IOHandlerKind::TAG.as_str(), "io_handler");
 }
 
 #[test]

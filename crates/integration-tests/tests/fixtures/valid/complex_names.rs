@@ -14,12 +14,12 @@ impl_typed_generation_kinds! {
 
 fn main() {
     // Test that complex names are handled correctly
-    let _http_client_tag = HTTPClientKind::tag();
-    let _xml_parser_tag = XMLParserKind::tag();
-    let _api_key_tag = APIKeyKind::tag();
-    let _io_handler_tag = IOHandlerKind::tag();
-    let _user_account_tag = UserAccountKind::tag();
-    let _project_task_tag = ProjectTaskKind::tag();
+    let _http_client_tag = HTTPClientKind::TAG;
+    let _xml_parser_tag = XMLParserKind::TAG;
+    let _api_key_tag = APIKeyKind::TAG;
+    let _io_handler_tag = IOHandlerKind::TAG;
+    let _user_account_tag = UserAccountKind::TAG;
+    let _project_task_tag = ProjectTaskKind::TAG;
 
     // Test type aliases exist
     let _http_client_generation: HTTPClientGeneration;
@@ -30,10 +30,10 @@ fn main() {
     let _project_task_generation: ProjectTaskGeneration;
 
     // Test that complex names are properly snake_cased
-    assert_eq!(HTTPClientKind::tag().as_str(), "http_client");
-    assert_eq!(XMLParserKind::tag().as_str(), "xml_parser");
-    assert_eq!(APIKeyKind::tag().as_str(), "api_key");
-    assert_eq!(IOHandlerKind::tag().as_str(), "io_handler");
-    assert_eq!(UserAccountKind::tag().as_str(), "user_account");
-    assert_eq!(ProjectTaskKind::tag().as_str(), "project_task");
+    assert_eq!(HTTPClientKind::TAG.as_str(), "http_client");
+    assert_eq!(XMLParserKind::TAG.as_str(), "xml_parser");
+    assert_eq!(APIKeyKind::TAG.as_str(), "api_key");
+    assert_eq!(IOHandlerKind::TAG.as_str(), "io_handler");
+    assert_eq!(UserAccountKind::TAG.as_str(), "user_account");
+    assert_eq!(ProjectTaskKind::TAG.as_str(), "project_task");
 }

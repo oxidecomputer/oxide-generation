@@ -33,8 +33,8 @@ impl_typed_generation_kinds! {
 // This generates empty UserKind and BusinessUnitKind enums implementing
 // TypedGenerationKind, with the tags "user" and "business_unit" respectively.
 // Tags are snake_case versions of type names.
-assert_eq!(UserKind::tag().as_str(), "user");
-assert_eq!(BusinessUnitKind::tag().as_str(), "business_unit");
+assert_eq!(UserKind::TAG.as_str(), "user");
+assert_eq!(BusinessUnitKind::TAG.as_str(), "business_unit");
 
 // The macro also generates UserGeneration and BusinessUnitGeneration type aliases.
 let user_generation = UserGeneration::new();

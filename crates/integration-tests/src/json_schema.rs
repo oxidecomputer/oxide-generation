@@ -103,6 +103,6 @@ fn test_schemars_macro_integration() {
 #[test]
 fn test_macro_generated_tags() {
     // Test that the generated kinds have the correct tags
-    assert_eq!(TestKind::tag().as_str(), "test");
-    assert_eq!(AnotherKind::tag().as_str(), "another");
+    assert_eq!(TestKind::TAG.as_str(), "test");
+    assert_eq!(AnotherKind::TAG.as_str(), "another");
 }

@@ -21,13 +21,11 @@
 //! enum MyKind {}
 //!
 //! impl TypedGenerationKind for MyKind {
-//!     fn tag() -> TypedGenerationTag {
-//!         // Tags are required to be ASCII identifiers, with underscores
-//!         // and dashes also supported. The validity of a tag can be checked
-//!         // at compile time by assigning it to a const, like so:
-//!         const TAG: TypedGenerationTag = TypedGenerationTag::new("my_kind");
-//!         TAG
-//!     }
+//!     // Tags are required to be ASCII identifiers, with underscores
+//!     // and dashes also supported. Because the tag is an associated
+//!     // constant, its validity is checked at compile time, at the point
+//!     // where the tag is first used.
+//!     const TAG: TypedGenerationTag = TypedGenerationTag::new("my_kind");
 //! }
 //!
 //! // Now, a generation number can be created with this kind.
@@ -71,11 +69,7 @@
 //!             pub enum $kind {}
 //!
 //!             impl TypedGenerationKind for $kind {
-//!                 #[inline]
-//!                 fn tag() -> TypedGenerationTag {
-//!                     const TAG: TypedGenerationTag = TypedGenerationTag::new($tag);
-//!                     TAG
-//!                 }
+//!                 const TAG: TypedGenerationTag = TypedGenerationTag::new($tag);
 //!             }
 //!         )*
 //!     };
@@ -522,19 +516,13 @@ impl<T: TypedGenerationKind> TypedGeneration<T> {
     /// // RepoKind:
     /// pub enum RepoKind {}
     /// impl TypedGenerationKind for RepoKind {
-    ///     fn tag() -> TypedGenerationTag {
-    ///         const TAG: TypedGenerationTag = TypedGenerationTag::new("repo");
-    ///         TAG
-    ///     }
+    ///     const TAG: TypedGenerationTag = TypedGenerationTag::new("repo");
     /// }
     ///
     /// // You also have more specific kinds:
     /// pub enum GitRepoKind {}
     /// impl TypedGenerationKind for GitRepoKind {
-    ///     fn tag() -> TypedGenerationTag {
-    ///         const TAG: TypedGenerationTag = TypedGenerationTag::new("git_repo");
-    ///         TAG
-    ///     }
+    ///     const TAG: TypedGenerationTag = TypedGenerationTag::new("git_repo");
     /// }
     /// // (and HgRepoKind, JujutsuRepoKind, etc...)
     ///
@@ -599,7 +587,7 @@ impl<T: TypedGenerationKind> Hash for TypedGeneration<T> {
 
 impl<T: TypedGenerationKind> fmt::Debug for TypedGeneration<T> {
     fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result {
-        write!(f, "{} ({})", self.generation, T::tag())
+        write!(f, "{} ({})", self.generation, T::TAG)
     }
 }
 
@@ -622,10 +610,8 @@ impl<T: TypedGenerationKind> FromStr for TypedGeneration<T> {
     type Err = ParseError;
 
     fn from_str(s: &str) -> Result<Self, Self::Err> {
-        let generation = Generation::from_str(s).map_err(|error| ParseError {
-            error,
-            tag: T::tag(),
-        })?;
+        let generation =
+            Generation::from_str(s).map_err(|error| ParseError { error, tag: T::TAG })?;
         Ok(Self::from_untyped_generation(generation))
     }
 }
@@ -793,7 +779,7 @@ mod schemars08_imp {
         #[inline]
         fn schema_name() -> String {
             // Use the alias if available, otherwise generate our own schema name.
-            if let Some(alias) = T::alias() {
+            if let Some(alias) = T::ALIAS {
                 alias.to_owned()
             } else {
                 format!("TypedGenerationFor{}", T::schema_name())
@@ -817,7 +803,7 @@ mod schemars08_imp {
             // added to the list of schemas in `generator` in case the lifting
             // is successful.
             let t_schema = schema_for!(T);
-            if let Some(schema) = lift_json_schema(&t_schema.schema, T::alias()) {
+            if let Some(schema) = lift_json_schema(&t_schema.schema, T::ALIAS) {
                 return schema.into();
             }
 
@@ -982,27 +968,24 @@ mod proptest1_imp {
 /// [`oxide-typed-generation-macros`]: https://docs.rs/oxide-typed-generation-macros
 /// [`JsonSchema`]: schemars::JsonSchema
 pub trait TypedGenerationKind: Send + Sync + 'static {
-    /// Returns the corresponding tag for this kind.
+    /// The corresponding tag for this kind.
     ///
     /// The tag forms a runtime representation of this type.
     ///
     /// The tag is required to be a static string.
-    fn tag() -> TypedGenerationTag;
+    const TAG: TypedGenerationTag;
 
-    /// Returns a string that corresponds to a type alias for
-    /// `TypedGeneration<Self>`, if one is defined.
+    /// A string that corresponds to a type alias for `TypedGeneration<Self>`,
+    /// if one is defined.
     ///
     /// The type alias must be defined in the same module as `Self`. This
-    /// function is used by the schemars integration to refer to embed a
+    /// constant is used by the schemars integration to refer to embed a
     /// reference to that alias in the schema, if available.
     ///
     /// This is usually defined by the [`oxide-typed-generation-macros`] crate.
     ///
     /// [`oxide-typed-generation-macros`]: https://docs.rs/oxide-typed-generation-macros
-    #[inline]
-    fn alias() -> Option<&'static str> {
-        None
-    }
+    const ALIAS: Option<&'static str> = None;
 }
 
 /// Describes what kind of [`TypedGeneration`] something is.
@@ -1216,10 +1199,7 @@ mod tests {
     enum MyKind {}
 
     impl TypedGenerationKind for MyKind {
-        fn tag() -> TypedGenerationTag {
-            const TAG: TypedGenerationTag = TypedGenerationTag::new("my_kind");
-            TAG
-        }
+        const TAG: TypedGenerationTag = TypedGenerationTag::new("my_kind");
     }
 
     #[test]

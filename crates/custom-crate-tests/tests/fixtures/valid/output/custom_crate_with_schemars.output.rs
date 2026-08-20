@@ -1,17 +1,14 @@
 #[derive(Clone, Copy, Debug, PartialEq, Eq)]
 pub enum AccountKind {}
 impl ::my_custom_generation::TypedGenerationKind for AccountKind {
-    #[inline]
-    fn tag() -> ::my_custom_generation::TypedGenerationTag {
-        const TAG: ::my_custom_generation::TypedGenerationTag = ::my_custom_generation::TypedGenerationTag::new(
-            "account",
-        );
-        TAG
-    }
-    fn alias() -> Option<&'static str> {
-        Some(stringify!(AccountGeneration))
-    }
+    const TAG: ::my_custom_generation::TypedGenerationTag = ::my_custom_generation::TypedGenerationTag::new(
+        "account",
+    );
+    const ALIAS: Option<&'static str> = Some(stringify!(AccountGeneration));
 }
+const _: () = {
+    let _ = <AccountKind as ::my_custom_generation::TypedGenerationKind>::TAG;
+};
 #[cfg(feature = "internal-schemars08-tests")]
 impl ::my_custom_generation::macro_support::schemars08::JsonSchema for AccountKind {
     fn schema_name() -> ::std::string::String {
@@ -48,17 +45,14 @@ pub type AccountGeneration = ::my_custom_generation::TypedGeneration<AccountKind
 #[derive(Clone, Copy, Debug, PartialEq, Eq)]
 pub enum TransactionKind {}
 impl ::my_custom_generation::TypedGenerationKind for TransactionKind {
-    #[inline]
-    fn tag() -> ::my_custom_generation::TypedGenerationTag {
-        const TAG: ::my_custom_generation::TypedGenerationTag = ::my_custom_generation::TypedGenerationTag::new(
-            "transaction",
-        );
-        TAG
-    }
-    fn alias() -> Option<&'static str> {
-        Some(stringify!(TransactionGeneration))
-    }
+    const TAG: ::my_custom_generation::TypedGenerationTag = ::my_custom_generation::TypedGenerationTag::new(
+        "transaction",
+    );
+    const ALIAS: Option<&'static str> = Some(stringify!(TransactionGeneration));
 }
+const _: () = {
+    let _ = <TransactionKind as ::my_custom_generation::TypedGenerationKind>::TAG;
+};
 #[cfg(feature = "internal-schemars08-tests")]
 impl ::my_custom_generation::macro_support::schemars08::JsonSchema for TransactionKind {
     fn schema_name() -> ::std::string::String {
@@ -97,17 +91,14 @@ pub type TransactionGeneration = ::my_custom_generation::TypedGeneration<
 #[derive(Clone, Copy, Debug, PartialEq, Eq)]
 pub enum ApiKeyKind {}
 impl ::my_custom_generation::TypedGenerationKind for ApiKeyKind {
-    #[inline]
-    fn tag() -> ::my_custom_generation::TypedGenerationTag {
-        const TAG: ::my_custom_generation::TypedGenerationTag = ::my_custom_generation::TypedGenerationTag::new(
-            "api_key",
-        );
-        TAG
-    }
-    fn alias() -> Option<&'static str> {
-        Some(stringify!(ApiKeyGeneration))
-    }
+    const TAG: ::my_custom_generation::TypedGenerationTag = ::my_custom_generation::TypedGenerationTag::new(
+        "api_key",
+    );
+    const ALIAS: Option<&'static str> = Some(stringify!(ApiKeyGeneration));
 }
+const _: () = {
+    let _ = <ApiKeyKind as ::my_custom_generation::TypedGenerationKind>::TAG;
+};
 #[cfg(feature = "internal-schemars08-tests")]
 impl ::my_custom_generation::macro_support::schemars08::JsonSchema for ApiKeyKind {
     fn schema_name() -> ::std::string::String {

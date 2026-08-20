@@ -15,9 +15,9 @@ impl_typed_generation_kinds! {
 
 fn main() {
     // Test that the generated types exist and work
-    let _user_kind_tag = UserKind::tag();
-    let _org_kind_tag = OrganizationKind::tag();
-    let _project_kind_tag = ProjectKind::tag();
+    let _user_kind_tag = UserKind::TAG;
+    let _org_kind_tag = OrganizationKind::TAG;
+    let _project_kind_tag = ProjectKind::TAG;
 
     // Test type aliases exist
     let _user_generation: UserGeneration;

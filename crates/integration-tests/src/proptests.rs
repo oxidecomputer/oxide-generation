@@ -9,10 +9,7 @@ use test_strategy::proptest;
 enum MyKind {}
 
 impl TypedGenerationKind for MyKind {
-    fn tag() -> TypedGenerationTag {
-        const TAG: TypedGenerationTag = TypedGenerationTag::new("my_kind");
-        TAG
-    }
+    const TAG: TypedGenerationTag = TypedGenerationTag::new("my_kind");
 }
 
 /// Ensure that generated generation numbers are always within range.

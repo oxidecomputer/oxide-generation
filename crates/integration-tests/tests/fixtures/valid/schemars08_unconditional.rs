@@ -29,9 +29,9 @@ fn main() {
         use oxide_typed_generation::TypedGenerationKind;
 
         // Test that the generated types exist and work
-        let _user_kind_tag = UserKind::tag();
-        let _org_kind_tag = OrganizationKind::tag();
-        let _project_kind_tag = ProjectKind::tag();
+        let _user_kind_tag = UserKind::TAG;
+        let _org_kind_tag = OrganizationKind::TAG;
+        let _project_kind_tag = ProjectKind::TAG;
 
         // Test type aliases exist
         let _user_generation: UserGeneration;
@@ -39,8 +39,8 @@ fn main() {
         let _project_generation: ProjectGeneration;
 
         // Test that tags are properly snake_cased
-        assert_eq!(UserKind::tag().as_str(), "user");
-        assert_eq!(OrganizationKind::tag().as_str(), "organization");
-        assert_eq!(ProjectKind::tag().as_str(), "project");
+        assert_eq!(UserKind::TAG.as_str(), "user");
+        assert_eq!(OrganizationKind::TAG.as_str(), "organization");
+        assert_eq!(ProjectKind::TAG.as_str(), "project");
     }
 }

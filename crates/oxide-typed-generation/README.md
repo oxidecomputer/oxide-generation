@@ -31,13 +31,11 @@ use oxide_typed_generation::{
 enum MyKind {}
 
 impl TypedGenerationKind for MyKind {
-    fn tag() -> TypedGenerationTag {
-        // Tags are required to be ASCII identifiers, with underscores
-        // and dashes also supported. The validity of a tag can be checked
-        // at compile time by assigning it to a const, like so:
-        const TAG: TypedGenerationTag = TypedGenerationTag::new("my_kind");
-        TAG
-    }
+    // Tags are required to be ASCII identifiers, with underscores
+    // and dashes also supported. Because the tag is an associated
+    // constant, its validity is checked at compile time, at the point
+    // where the tag is first used.
+    const TAG: TypedGenerationTag = TypedGenerationTag::new("my_kind");
 }
 
 // Now, a generation number can be created with this kind.
@@ -78,11 +76,7 @@ macro_rules! impl_kinds {
             pub enum $kind {}
 
             impl TypedGenerationKind for $kind {
-                #[inline]
-                fn tag() -> TypedGenerationTag {
-                    const TAG: TypedGenerationTag = TypedGenerationTag::new($tag);
-                    TAG
-                }
+                const TAG: TypedGenerationTag = TypedGenerationTag::new($tag);
             }
         )*
     };

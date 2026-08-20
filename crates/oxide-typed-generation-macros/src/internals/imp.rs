@@ -101,17 +101,16 @@ pub fn impl_typed_generation_kinds(input: TokenStream) -> ImplKindsOutput {
             pub enum #kind_name_ident {}
 
             impl ::#oxide_typed_generation_crate::TypedGenerationKind for #kind_name_ident {
-                #[inline]
-                fn tag() -> ::#oxide_typed_generation_crate::TypedGenerationTag {
-                    // `const` ensures that tags are validated at compile-time.
-                    const TAG: ::#oxide_typed_generation_crate::TypedGenerationTag = ::#oxide_typed_generation_crate::TypedGenerationTag::new(#tag_name);
-                    TAG
-                }
+                const TAG: ::#oxide_typed_generation_crate::TypedGenerationTag = ::#oxide_typed_generation_crate::TypedGenerationTag::new(#tag_name);
 
-                fn alias() -> Option<&'static str> {
-                    Some(stringify!(#alias_ident))
-                }
+                const ALIAS: Option<&'static str> = Some(stringify!(#alias_ident));
             }
+
+            // Unused associated constants aren't evaluated, so force an
+            // evaluation here to validate the tag at the definition site.
+            const _: () = {
+                let _ = <#kind_name_ident as ::#oxide_typed_generation_crate::TypedGenerationKind>::TAG;
+            };
 
             #schemars_impl
 

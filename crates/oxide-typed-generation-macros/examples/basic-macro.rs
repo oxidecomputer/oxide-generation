@@ -34,17 +34,17 @@ fn main() {
     println!(
         "User generation: {} (tag: {})",
         user_generation,
-        UserKind::tag()
+        UserKind::TAG
     );
     println!(
         "Organization generation: {} (tag: {})",
         org_generation,
-        OrganizationKind::tag()
+        OrganizationKind::TAG
     );
     println!(
         "Project generation: {} (tag: {})",
         project_generation,
-        ProjectKind::tag()
+        ProjectKind::TAG
     );
 
     // The compiler ensures type safety -- you can't accidentally mix up types.

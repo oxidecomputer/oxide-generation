@@ -1,17 +1,14 @@
 #[derive(Clone, Copy, Debug, PartialEq, Eq)]
 pub enum UserKind {}
 impl ::oxide_typed_generation::TypedGenerationKind for UserKind {
-    #[inline]
-    fn tag() -> ::oxide_typed_generation::TypedGenerationTag {
-        const TAG: ::oxide_typed_generation::TypedGenerationTag = ::oxide_typed_generation::TypedGenerationTag::new(
-            "user",
-        );
-        TAG
-    }
-    fn alias() -> Option<&'static str> {
-        Some(stringify!(UserGeneration))
-    }
+    const TAG: ::oxide_typed_generation::TypedGenerationTag = ::oxide_typed_generation::TypedGenerationTag::new(
+        "user",
+    );
+    const ALIAS: Option<&'static str> = Some(stringify!(UserGeneration));
 }
+const _: () = {
+    let _ = <UserKind as ::oxide_typed_generation::TypedGenerationKind>::TAG;
+};
 impl ::oxide_typed_generation::macro_support::schemars08::JsonSchema for UserKind {
     fn schema_name() -> ::std::string::String {
         "UserKind".to_string()
@@ -47,17 +44,14 @@ pub type UserGeneration = ::oxide_typed_generation::TypedGeneration<UserKind>;
 #[derive(Clone, Copy, Debug, PartialEq, Eq)]
 pub enum OrganizationKind {}
 impl ::oxide_typed_generation::TypedGenerationKind for OrganizationKind {
-    #[inline]
-    fn tag() -> ::oxide_typed_generation::TypedGenerationTag {
-        const TAG: ::oxide_typed_generation::TypedGenerationTag = ::oxide_typed_generation::TypedGenerationTag::new(
-            "organization",
-        );
-        TAG
-    }
-    fn alias() -> Option<&'static str> {
-        Some(stringify!(OrganizationGeneration))
-    }
+    const TAG: ::oxide_typed_generation::TypedGenerationTag = ::oxide_typed_generation::TypedGenerationTag::new(
+        "organization",
+    );
+    const ALIAS: Option<&'static str> = Some(stringify!(OrganizationGeneration));
 }
+const _: () = {
+    let _ = <OrganizationKind as ::oxide_typed_generation::TypedGenerationKind>::TAG;
+};
 impl ::oxide_typed_generation::macro_support::schemars08::JsonSchema
 for OrganizationKind {
     fn schema_name() -> ::std::string::String {
@@ -96,17 +90,14 @@ pub type OrganizationGeneration = ::oxide_typed_generation::TypedGeneration<
 #[derive(Clone, Copy, Debug, PartialEq, Eq)]
 pub enum ProjectKind {}
 impl ::oxide_typed_generation::TypedGenerationKind for ProjectKind {
-    #[inline]
-    fn tag() -> ::oxide_typed_generation::TypedGenerationTag {
-        const TAG: ::oxide_typed_generation::TypedGenerationTag = ::oxide_typed_generation::TypedGenerationTag::new(
-            "project",
-        );
-        TAG
-    }
-    fn alias() -> Option<&'static str> {
-        Some(stringify!(ProjectGeneration))
-    }
+    const TAG: ::oxide_typed_generation::TypedGenerationTag = ::oxide_typed_generation::TypedGenerationTag::new(
+        "project",
+    );
+    const ALIAS: Option<&'static str> = Some(stringify!(ProjectGeneration));
 }
+const _: () = {
+    let _ = <ProjectKind as ::oxide_typed_generation::TypedGenerationKind>::TAG;
+};
 impl ::oxide_typed_generation::macro_support::schemars08::JsonSchema for ProjectKind {
     fn schema_name() -> ::std::string::String {
         "ProjectKind".to_string()

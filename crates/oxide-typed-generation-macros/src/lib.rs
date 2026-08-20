@@ -23,8 +23,8 @@
 //! // This generates empty UserKind and BusinessUnitKind enums implementing
 //! // TypedGenerationKind, with the tags "user" and "business_unit" respectively.
 //! // Tags are snake_case versions of type names.
-//! assert_eq!(UserKind::tag().as_str(), "user");
-//! assert_eq!(BusinessUnitKind::tag().as_str(), "business_unit");
+//! assert_eq!(UserKind::TAG.as_str(), "user");
+//! assert_eq!(BusinessUnitKind::TAG.as_str(), "business_unit");
 //!
 //! // The macro also generates UserGeneration and BusinessUnitGeneration type aliases.
 //! let user_generation = UserGeneration::new();
@@ -75,8 +75,8 @@ use quote::ToTokens;
 /// // This generates empty UserKind and BusinessUnitKind enums implementing
 /// // TypedGenerationKind, with the tags "user" and "business_unit" respectively.
 /// // Tags are snake_case versions of type names.
-/// assert_eq!(UserKind::tag().as_str(), "user");
-/// assert_eq!(BusinessUnitKind::tag().as_str(), "business_unit");
+/// assert_eq!(UserKind::TAG.as_str(), "user");
+/// assert_eq!(BusinessUnitKind::TAG.as_str(), "business_unit");
 ///
 /// // The macro also generates UserGeneration and BusinessUnitGeneration type aliases.
 /// let user_generation = UserGeneration::new();
@@ -128,8 +128,8 @@ use quote::ToTokens;
 /// }
 ///
 /// // This generates types with the specified names:
-/// assert_eq!(MyUserKind::tag().as_str(), "user");
-/// assert_eq!(OrganizationKind::tag().as_str(), "org");
+/// assert_eq!(MyUserKind::TAG.as_str(), "user");
+/// assert_eq!(OrganizationKind::TAG.as_str(), "org");
 ///
 /// let user_generation = UserGeneration::new();
 /// let org_generation = OrgGeneration::new();
