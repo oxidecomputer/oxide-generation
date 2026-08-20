@@ -120,6 +120,10 @@ provided. This trait also permits conversions between typed and untyped generati
   API, though we hope to stabilize it in the future.
 * `proptest1`: Enables support for generating `proptest::Arbitrary` instances of generation
   numbers. *Not enabled by default.*
+* `daft01`: Enables diffing support via [`daft`](https://docs.rs/daft) 0.1, treating generation
+  numbers as leaf values. *Not enabled by default.*
+* `slog2`: Enables logging support via [`slog`](https://docs.rs/slog) 2.x, emitting generation
+  numbers as integers. *Not enabled by default.* Enabling this feature also enables `std`.
 
 ## Minimum supported Rust version (MSRV)
 

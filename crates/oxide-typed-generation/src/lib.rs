@@ -113,6 +113,10 @@
 //!   API, though we hope to stabilize it in the future.
 //! - `proptest1`: Enables support for generating `proptest::Arbitrary` instances of generation
 //!   numbers. *Not enabled by default.*
+//! - `daft01`: Enables diffing support via [`daft`](https://docs.rs/daft) 0.1, treating generation
+//!   numbers as leaf values. *Not enabled by default.*
+//! - `slog2`: Enables logging support via [`slog`](https://docs.rs/slog) 2.x, emitting generation
+//!   numbers as integers. *Not enabled by default.* Enabling this feature also enables `std`.
 //!
 //! # Minimum supported Rust version (MSRV)
 //!
@@ -937,6 +941,70 @@ mod proptest1_imp {
     }
 }
 
+#[cfg(feature = "daft01")]
+mod daft01_imp {
+    use super::*;
+
+    /// Diffs a `Generation` as a leaf value.
+    ///
+    /// Generation numbers are scalars, so diffing stops at them.
+    impl daft::Diffable for Generation {
+        type Diff<'daft> = daft::Leaf<&'daft Self>;
+
+        fn diff<'daft>(&'daft self, other: &'daft Self) -> Self::Diff<'daft> {
+            daft::Leaf {
+                before: self,
+                after: other,
+            }
+        }
+    }
+
+    /// Diffs a `TypedGeneration<T>` as a leaf value.
+    ///
+    /// This impl does not require `T` to implement `Diffable`.
+    impl<T: TypedGenerationKind> daft::Diffable for TypedGeneration<T> {
+        type Diff<'daft> = daft::Leaf<&'daft Self>;
+
+        fn diff<'daft>(&'daft self, other: &'daft Self) -> Self::Diff<'daft> {
+            daft::Leaf {
+                before: self,
+                after: other,
+            }
+        }
+    }
+}
+
+#[cfg(feature = "slog2")]
+mod slog2_imp {
+    use super::*;
+
+    /// Logs a `Generation` as an integer.
+    impl slog::Value for Generation {
+        fn serialize(
+            &self,
+            _rec: &slog::Record,
+            key: slog::Key,
+            serializer: &mut dyn slog::Serializer,
+        ) -> slog::Result {
+            serializer.emit_u64(key, self.as_u64())
+        }
+    }
+
+    /// Logs a `TypedGeneration<T>` as an integer, using the same format as [`Generation`].
+    ///
+    /// This impl does not require `T` to implement `slog::Value`.
+    impl<T: TypedGenerationKind> slog::Value for TypedGeneration<T> {
+        fn serialize(
+            &self,
+            _rec: &slog::Record,
+            key: slog::Key,
+            serializer: &mut dyn slog::Serializer,
+        ) -> slog::Result {
+            serializer.emit_u64(key, self.as_u64())
+        }
+    }
+}
+
 /// Represents marker types that can be used as a type parameter for [`TypedGeneration`].
 ///
 /// Generally, an implementation of this will be a zero-sized type that can never be constructed. An
@@ -1402,6 +1470,75 @@ mod tests {
              expected an integer between 0 and 9223372036854775807"
         );
         serde_json::from_str::<TypedGeneration<MyKind>>("9223372036854775808").unwrap_err();
+    }
+
+    #[test]
+    #[cfg(feature = "daft01")]
+    fn test_daft() {
+        use daft::Diffable;
+
+        let before = Generation::from_u32(5);
+        let after = Generation::from_u32(6);
+        let diff = before.diff(&after);
+        assert_eq!(diff.before, &before);
+        assert_eq!(diff.after, &after);
+
+        // The same holds for typed generation numbers.
+        let typed_before = TypedGeneration::<MyKind>::from_u32(5);
+        let typed_after = TypedGeneration::<MyKind>::from_u32(6);
+        let typed_diff = typed_before.diff(&typed_after);
+        assert_eq!(typed_diff.before, &typed_before);
+        assert_eq!(typed_diff.after, &typed_after);
+    }
+
+    #[test]
+    #[cfg(feature = "slog2")]
+    fn test_slog() {
+        // Records the value passed to `emit_u64`, so that the test can check
+        // that generation numbers are logged as integers rather than strings.
+        struct RecordingSerializer(Option<u64>);
+
+        impl slog::Serializer for RecordingSerializer {
+            fn emit_u64(&mut self, _key: slog::Key, value: u64) -> slog::Result {
+                self.0 = Some(value);
+                Ok(())
+            }
+
+            fn emit_arguments(&mut self, _key: slog::Key, _value: &fmt::Arguments) -> slog::Result {
+                panic!("generation numbers are emitted via emit_u64")
+            }
+        }
+
+        // The record is built inline because `format_args!` produces a
+        // temporary that only lives until the end of the statement.
+        //
+        // slog's `Key` is a plain `&'static str` unless the `dynamic-keys`
+        // feature is enabled, so the conversion below is sometimes a no-op.
+        #[allow(clippy::useless_conversion)]
+        fn emitted_u64(value: &dyn slog::Value) -> Option<u64> {
+            let mut serializer = RecordingSerializer(None);
+            value
+                .serialize(
+                    &slog::record!(
+                        slog::Level::Info,
+                        "",
+                        &format_args!(""),
+                        slog::BorrowedKV(&())
+                    ),
+                    "generation".into(),
+                    &mut serializer,
+                )
+                .expect("generation number was serialized");
+            serializer.0
+        }
+
+        assert_eq!(emitted_u64(&Generation::from_u32(5)), Some(5));
+
+        // The same holds for typed generation numbers.
+        assert_eq!(
+            emitted_u64(&TypedGeneration::<MyKind>::from_u32(6)),
+            Some(6)
+        );
     }
 
     #[test]

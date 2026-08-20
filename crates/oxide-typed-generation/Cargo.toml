@@ -19,10 +19,12 @@ all-features = true
 rustdoc-args = ["--cfg=doc_cfg"]
 
 [dependencies]
+daft = { workspace = true, optional = true }
 proptest = { workspace = true, optional = true }
 serde = { workspace = true, optional = true }
 serde_json = { workspace = true, optional = true }
 schemars = { workspace = true, optional = true }
+slog = { workspace = true, optional = true }
 
 [dev-dependencies]
 oxide-typed-generation-macros.workspace = true
@@ -34,6 +36,9 @@ std = []
 serde = ["dep:serde"]
 schemars08 = ["dep:schemars", "dep:serde_json", "std"]
 proptest1 = ["dep:proptest"]
+daft01 = ["dep:daft"]
+# slog 2.x requires the standard library.
+slog2 = ["dep:slog", "std"]
 
 [package.metadata.cargo-sync-rdme.badge.badges]
 license = true
