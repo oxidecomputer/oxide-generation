@@ -1,0 +1,5 @@
+error: expected identifier
+ --> tests/fixtures/invalid/crate_name_as_string.rs:5:40
+  |
+5 |         oxide_typed_generation_crate = "my_custom_generation",
+  |                                        ^^^^^^^^^^^^^^^^^^^^^^

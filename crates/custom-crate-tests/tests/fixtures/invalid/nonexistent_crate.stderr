@@ -1,0 +1,5 @@
+error[E0433]: cannot find `nonexistent_crate` in the crate root
+ --> tests/fixtures/invalid/nonexistent_crate.rs:5:40
+  |
+5 |         oxide_typed_generation_crate = nonexistent_crate,
+  |                                        ^^^^^^^^^^^^^^^^^ could not find `nonexistent_crate` in the list of imported crates

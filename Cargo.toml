@@ -1,0 +1,36 @@
+[workspace]
+resolver = "2"
+members = ["crates/*", "e2e-example/*"]
+
+[workspace.package]
+edition = "2024"
+license = "MIT OR Apache-2.0"
+repository = "https://github.com/oxidecomputer/oxide-typed-generation"
+rust-version = "1.85"
+
+[workspace.dependencies]
+datatest-stable = "0.3.2"
+expectorate = "1.2.0"
+heck = "0.5"
+integration-tests = { path = "crates/integration-tests" }
+my-custom-generation = { path = "crates/oxide-typed-generation", package = "oxide-typed-generation" }
+oxide-typed-generation = { path = "crates/oxide-typed-generation" }
+oxide-typed-generation-macros = { path = "crates/oxide-typed-generation-macros" }
+prettyplease = "0.3.0"
+proc-macro2 = "1.0"
+quote = "1.0"
+# Ideally we'd let you use no-std proptest, but proptest requires either the std
+# or the no_std option to be set. It won't compile without one of those two set.
+proptest = { version = "1.7.0", features = ["std"], default-features = false }
+schemars = "0.8.17"
+serde = "1"
+serde_json = "1.0.140"
+serde_tokenstream = "0.3.0"
+static_assertions = "1.1.0"
+syn = "3.0.3"
+test-strategy = "0.4.1"
+trybuild = "1.0"
+typify = "0.7.0"
+
+[workspace.lints.rust]
+unexpected_cfgs = { level = "warn", check-cfg = ['cfg(doc_cfg)'] }

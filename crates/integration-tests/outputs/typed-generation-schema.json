@@ -1,0 +1,25 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "MyPathStruct",
+  "type": "object",
+  "required": [
+    "generation"
+  ],
+  "properties": {
+    "generation": {
+      "$ref": "#/definitions/MyGeneration"
+    }
+  },
+  "definitions": {
+    "MyGeneration": {
+      "type": "integer",
+      "format": "uint64",
+      "minimum": 0.0,
+      "x-rust-type": {
+        "crate": "my-crate",
+        "path": "my_crate::types::MyGeneration",
+        "version": "1.0.0"
+      }
+    }
+  }
+}

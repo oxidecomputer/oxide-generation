@@ -1,0 +1,5 @@
+error: expected anything but a ',', '=', or EOF, but found `,`
+ --> tests/fixtures/invalid/missing_crate_value.rs:5:40
+  |
+5 |         oxide_typed_generation_crate = ,
+  |                                        ^

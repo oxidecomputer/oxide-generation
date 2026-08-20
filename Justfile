@@ -1,0 +1,66 @@
+set positional-arguments
+
+# Note: help messages should be 1 line long as required by just.
+
+# Print a help message.
+help:
+    just --list
+
+excluded_features_default := "internal-schemars08-tests internal-proptest1-tests"
+excluded_features_no_std := "schemars08 serde default std proptest1"
+
+# Run `cargo hack --feature-powerset` on crates
+powerset *args:
+    #!/usr/bin/env bash
+    excluded_features="{{excluded_features_default}}"
+    NEXTEST_NO_TESTS=pass cargo hack --feature-powerset --workspace --exclude-features "${excluded_features// /,}" "$@"
+
+# Run `cargo hack --feature-powerset` on crates that build at the MSRV
+powerset-msrv *args:
+    #!/usr/bin/env bash
+
+    # e2e-schema-consumer depends on typify, whose regress dependency
+    # potentially needs a newer Rust than the MSRV. It isn't actually published,
+    # so it is only built on stable.
+    excluded_features="{{excluded_features_default}}"
+    NEXTEST_NO_TESTS=pass cargo hack --feature-powerset --workspace --exclude e2e-schema-consumer \
+        --exclude-features "${excluded_features// /,}" "$@"
+
+# Run `cargo hack` with no-std-compatible features
+powerset-no-std *args:
+    #!/usr/bin/env bash
+
+    # Don't need to pass in the "internal-*" features here, since we don't
+    # enable integration-tests which defines these features.
+    excluded_features="{{excluded_features_no_std}}"
+    NEXTEST_NO_TESTS=pass cargo hack --feature-powerset --workspace --exclude integration-tests \
+        --exclude custom-crate-tests --exclude e2e-kinds --exclude e2e-schema-consumer --exclude e2e-schema-producer \
+        --exclude-features "${excluded_features// /,}" "$@"
+
+# Build docs for crates and direct dependencies
+rustdoc *args:
+    @cargo tree --depth 1 -e normal --prefix none --workspace --all-features \
+        | gawk '{ gsub(" v", "@", $0); printf("%s\n", $1); }' \
+        | xargs printf -- '-p %s\n' \
+        | RUSTC_BOOTSTRAP=1 RUSTDOCFLAGS='--cfg=doc_cfg' xargs cargo doc --no-deps --all-features {{args}}
+
+
+# Collect test coverage
+coverage:
+    #!/usr/bin/env bash
+    echo "Running coverage (requires nightly)" >&2
+    cargo llvm-cov nextest --all-features --all-targets --lcov --output-path lcov.info
+    cargo llvm-cov test --all-features --doc --lcov --output-path lcov-doctest.info
+    echo "Wrote output to lcov.info and lcov-doctest.info" >&2
+
+# Generate README.md files using `cargo-sync-rdme`.
+generate-readmes:
+    cargo sync-rdme --toolchain nightly-2026-04-30 --workspace --all-features
+
+# Run cargo release in CI.
+ci-cargo-release package:
+    # cargo-release requires a release off a branch.
+    git checkout -B to-release
+    cargo release publish --publish --execute --no-confirm --package {{package}}
+    git checkout -
+    git branch -D to-release

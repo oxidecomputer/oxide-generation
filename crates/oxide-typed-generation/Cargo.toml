@@ -1,0 +1,50 @@
+[package]
+name = "oxide-typed-generation"
+version = "0.1.0"
+edition.workspace = true
+license.workspace = true
+repository.workspace = true
+description = "Newtype wrapper around generation numbers"
+documentation = "https://docs.rs/oxide-typed-generation"
+readme = "README.md"
+keywords = ["generation", "version", "concurrency", "newtype"]
+categories = ["data-structures", "no-std"]
+rust-version.workspace = true
+
+[lints]
+workspace = true
+
+[package.metadata.docs.rs]
+all-features = true
+rustdoc-args = ["--cfg=doc_cfg"]
+
+[dependencies]
+proptest = { workspace = true, optional = true }
+serde = { workspace = true, optional = true }
+serde_json = { workspace = true, optional = true }
+schemars = { workspace = true, optional = true }
+
+[dev-dependencies]
+oxide-typed-generation-macros.workspace = true
+serde_json.workspace = true
+
+[features]
+default = ["std"]
+std = []
+serde = ["dep:serde"]
+schemars08 = ["dep:schemars", "dep:serde_json", "std"]
+proptest1 = ["dep:proptest"]
+
+[package.metadata.cargo-sync-rdme.badge.badges]
+license = true
+crates-io = true
+docs-rs = true
+rust-version = true
+
+[package.metadata.release]
+pre-release-replacements = [
+    { file = "../../CHANGELOG.md", search = "Unreleased", replace = "[{{version}}]", min = 1 },
+    { file = "../../CHANGELOG.md", search = "ReleaseDate", replace = "{{date}}", min = 1 },
+    { file = "../../CHANGELOG.md", search = "<!-- next-header -->", replace = "<!-- next-header -->\n## Unreleased - ReleaseDate\n", exactly = 1 },
+    { file = "../../CHANGELOG.md", search = "<!-- next-url -->", replace = "<!-- next-url -->\n[{{version}}]: https://github.com/oxidecomputer/oxide-typed-generation/releases/oxide-typed-generation-{{version}}", exactly = 1 },
+]

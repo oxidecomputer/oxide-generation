@@ -1,0 +1,19 @@
+[package]
+name = "e2e-kinds"
+version = "0.1.0"
+edition.workspace = true
+license.workspace = true
+repository.workspace = true
+rust-version.workspace = true
+publish = false
+
+[dependencies]
+oxide-typed-generation = { workspace = true, features = ["schemars08", "serde"] }
+oxide-typed-generation-macros.workspace = true
+serde = { workspace = true, features = ["derive"] }
+
+[features]
+schemars08 = ["oxide-typed-generation/schemars08"]
+
+[package.metadata.release]
+release = false
