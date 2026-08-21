@@ -10,7 +10,7 @@ publish = false
 [dependencies]
 e2e-kinds = { path = "../e2e-kinds" }
 oxide-generation = { workspace = true, features = ["serde"] }
-serde = { workspace = true, features = ["derive"] }
+serde = { workspace = true, features = ["std", "derive"] }
 typify.workspace = true
 
 [package.metadata.release]

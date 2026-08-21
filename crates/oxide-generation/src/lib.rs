@@ -113,18 +113,19 @@
 //! # Features
 //!
 //! - `default`: Enables default features in the oxide-generation crate.
-//! - `std`: Enables the use of the standard library. *Enabled by default.*
+//! - `std`: Enables the use of the standard library, and the `std` feature of any enabled
+//!   optional dependencies. *Enabled by default.*
 //! - `serde`: Enables serialization and deserialization support via Serde. *Not enabled by
 //!   default.*
 //! - `schemars08`: Enables support for generating JSON schemas via schemars 0.8. *Not enabled by
 //!   default.* Note that the format of the generated schema is **not currently part** of the stable
-//!   API, though we hope to stabilize it in the future.
+//!   API, though we hope to stabilize it in the future. Enabling this feature also enables `std`.
 //! - `proptest1`: Enables support for generating `proptest::Arbitrary` instances of generation
-//!   numbers. *Not enabled by default.*
+//!   numbers. *Not enabled by default.* Enabling this feature also enables `std`.
 //! - `daft01`: Enables diffing support via [`daft`](https://docs.rs/daft) 0.1, treating generation
 //!   numbers as leaf values. *Not enabled by default.*
 //! - `slog2`: Enables logging support via [`slog`](https://docs.rs/slog) 2.x, emitting generation
-//!   numbers as integers. *Not enabled by default.* Enabling this feature also enables `std`.
+//!   numbers as integers. *Not enabled by default.*
 //!
 //! # Minimum supported Rust version (MSRV)
 //!

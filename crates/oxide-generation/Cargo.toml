@@ -32,13 +32,16 @@ serde_json.workspace = true
 
 [features]
 default = ["std"]
-std = []
+# Forward `std` to optional dependencies so that their std-only impls are
+# available whenever ours are.
+std = ["daft?/std", "serde?/std", "slog?/std"]
 serde = ["dep:serde"]
+# schemars 0.8 requires the standard library.
 schemars08 = ["dep:schemars", "dep:serde_json", "std"]
-proptest1 = ["dep:proptest"]
+# proptest requires the standard library.
+proptest1 = ["dep:proptest", "std"]
 daft01 = ["dep:daft"]
-# slog 2.x requires the standard library.
-slog2 = ["dep:slog", "std"]
+slog2 = ["dep:slog"]
 
 [package.metadata.cargo-sync-rdme.badge.badges]
 license = true

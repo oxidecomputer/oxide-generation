@@ -3,6 +3,15 @@
 <!-- next-header -->
 ## Unreleased - ReleaseDate
 
+### Changed
+
+Fix up feature set:
+
+- The `std` feature now also enables the `std` feature of `daft`, `serde`, and `slog` when the corresponding integration is enabled.
+- The `serde` and `slog2` features no longer require `std`, and are usable in `no_std` builds.
+- The `proptest1` feature now explicitly enables `std`, which proptest requires.
+- The `schemars08` feature no longer enables schemars' `derive` feature.
+
 ## [0.1.0] - 2026-08-21
 
 Initial release.

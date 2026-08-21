@@ -10,7 +10,7 @@ publish = false
 [dependencies]
 oxide-generation = { workspace = true, features = ["schemars08", "serde"] }
 oxide-generation-macros.workspace = true
-serde = { workspace = true, features = ["derive"] }
+serde = { workspace = true, features = ["std", "derive"] }
 
 [features]
 schemars08 = ["oxide-generation/schemars08"]
