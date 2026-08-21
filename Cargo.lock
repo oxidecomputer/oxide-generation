@@ -499,7 +499,7 @@ dependencies = [
 
 [[package]]
 name = "oxide-generation-macros"
-version = "0.1.0"
+version = "0.1.1"
 dependencies = [
  "heck",
  "oxide-generation",
