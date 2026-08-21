@@ -3,6 +3,8 @@
 <!-- next-header -->
 ## Unreleased - ReleaseDate
 
+## [0.1.2] - 2026-08-21
+
 Fixed README links.
 
 ## [0.1.1] - 2026-08-21
@@ -21,5 +23,6 @@ Fix up feature set:
 Initial release.
 
 <!-- next-url -->
+[0.1.2]: https://github.com/oxidecomputer/oxide-generation/releases/oxide-generation-0.1.2
 [0.1.1]: https://github.com/oxidecomputer/oxide-generation/releases/oxide-generation-0.1.1
 [0.1.0]: https://github.com/oxidecomputer/oxide-generation/releases/oxide-generation-0.1.0
