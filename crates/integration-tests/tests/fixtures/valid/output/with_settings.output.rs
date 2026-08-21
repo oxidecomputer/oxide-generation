@@ -1,21 +1,21 @@
 #[derive(Clone, Copy, Debug, PartialEq, Eq)]
-pub enum UserKind {}
-impl ::oxide_generation::TypedGenerationKind for UserKind {
+pub enum UserGenerationKind {}
+impl ::oxide_generation::TypedGenerationKind for UserGenerationKind {
     const TAG: ::oxide_generation::TypedGenerationTag = ::oxide_generation::TypedGenerationTag::new(
         "user",
     );
     const ALIAS: Option<&'static str> = Some(stringify!(UserGeneration));
 }
 const _: () = {
-    let _ = <UserKind as ::oxide_generation::TypedGenerationKind>::TAG;
+    let _ = <UserGenerationKind as ::oxide_generation::TypedGenerationKind>::TAG;
 };
 #[cfg(feature = "internal-schemars08-tests")]
-impl ::oxide_generation::macro_support::schemars08::JsonSchema for UserKind {
+impl ::oxide_generation::macro_support::schemars08::JsonSchema for UserGenerationKind {
     fn schema_name() -> ::std::string::String {
-        "UserKind".to_string()
+        "UserGenerationKind".to_string()
     }
     fn schema_id() -> ::std::borrow::Cow<'static, str> {
-        ::std::borrow::Cow::Borrowed("my_service::types::UserKind")
+        ::std::borrow::Cow::Borrowed("my_service::types::UserGenerationKind")
     }
     fn json_schema(
         _gen: &mut ::oxide_generation::macro_support::schemars08::r#gen::SchemaGenerator,
@@ -33,7 +33,7 @@ impl ::oxide_generation::macro_support::schemars08::JsonSchema for UserKind {
         let mut extensions = ::oxide_generation::macro_support::schemars08::Map::new();
         let rust_type = ::oxide_generation::macro_support::serde_json::json!(
             { "crate" : "my-service", "version" : "1.0.0", "path" :
-            "my_service::types::UserKind", }
+            "my_service::types::UserGenerationKind", }
         );
         extensions.insert("x-rust-type".to_string(), rust_type);
         schema.extensions = extensions;
@@ -41,25 +41,26 @@ impl ::oxide_generation::macro_support::schemars08::JsonSchema for UserKind {
     }
 }
 #[allow(unused)]
-pub type UserGeneration = ::oxide_generation::TypedGeneration<UserKind>;
+pub type UserGeneration = ::oxide_generation::TypedGeneration<UserGenerationKind>;
 #[derive(Clone, Copy, Debug, PartialEq, Eq)]
-pub enum OrganizationKind {}
-impl ::oxide_generation::TypedGenerationKind for OrganizationKind {
+pub enum OrganizationGenerationKind {}
+impl ::oxide_generation::TypedGenerationKind for OrganizationGenerationKind {
     const TAG: ::oxide_generation::TypedGenerationTag = ::oxide_generation::TypedGenerationTag::new(
         "organization",
     );
     const ALIAS: Option<&'static str> = Some(stringify!(OrganizationGeneration));
 }
 const _: () = {
-    let _ = <OrganizationKind as ::oxide_generation::TypedGenerationKind>::TAG;
+    let _ = <OrganizationGenerationKind as ::oxide_generation::TypedGenerationKind>::TAG;
 };
 #[cfg(feature = "internal-schemars08-tests")]
-impl ::oxide_generation::macro_support::schemars08::JsonSchema for OrganizationKind {
+impl ::oxide_generation::macro_support::schemars08::JsonSchema
+for OrganizationGenerationKind {
     fn schema_name() -> ::std::string::String {
-        "OrganizationKind".to_string()
+        "OrganizationGenerationKind".to_string()
     }
     fn schema_id() -> ::std::borrow::Cow<'static, str> {
-        ::std::borrow::Cow::Borrowed("my_service::types::OrganizationKind")
+        ::std::borrow::Cow::Borrowed("my_service::types::OrganizationGenerationKind")
     }
     fn json_schema(
         _gen: &mut ::oxide_generation::macro_support::schemars08::r#gen::SchemaGenerator,
@@ -77,7 +78,7 @@ impl ::oxide_generation::macro_support::schemars08::JsonSchema for OrganizationK
         let mut extensions = ::oxide_generation::macro_support::schemars08::Map::new();
         let rust_type = ::oxide_generation::macro_support::serde_json::json!(
             { "crate" : "my-service", "version" : "1.0.0", "path" :
-            "my_service::types::OrganizationKind", }
+            "my_service::types::OrganizationGenerationKind", }
         );
         extensions.insert("x-rust-type".to_string(), rust_type);
         schema.extensions = extensions;
@@ -85,25 +86,28 @@ impl ::oxide_generation::macro_support::schemars08::JsonSchema for OrganizationK
     }
 }
 #[allow(unused)]
-pub type OrganizationGeneration = ::oxide_generation::TypedGeneration<OrganizationKind>;
+pub type OrganizationGeneration = ::oxide_generation::TypedGeneration<
+    OrganizationGenerationKind,
+>;
 #[derive(Clone, Copy, Debug, PartialEq, Eq)]
-pub enum ProjectKind {}
-impl ::oxide_generation::TypedGenerationKind for ProjectKind {
+pub enum ProjectGenerationKind {}
+impl ::oxide_generation::TypedGenerationKind for ProjectGenerationKind {
     const TAG: ::oxide_generation::TypedGenerationTag = ::oxide_generation::TypedGenerationTag::new(
         "project",
     );
     const ALIAS: Option<&'static str> = Some(stringify!(ProjectGeneration));
 }
 const _: () = {
-    let _ = <ProjectKind as ::oxide_generation::TypedGenerationKind>::TAG;
+    let _ = <ProjectGenerationKind as ::oxide_generation::TypedGenerationKind>::TAG;
 };
 #[cfg(feature = "internal-schemars08-tests")]
-impl ::oxide_generation::macro_support::schemars08::JsonSchema for ProjectKind {
+impl ::oxide_generation::macro_support::schemars08::JsonSchema
+for ProjectGenerationKind {
     fn schema_name() -> ::std::string::String {
-        "ProjectKind".to_string()
+        "ProjectGenerationKind".to_string()
     }
     fn schema_id() -> ::std::borrow::Cow<'static, str> {
-        ::std::borrow::Cow::Borrowed("my_service::types::ProjectKind")
+        ::std::borrow::Cow::Borrowed("my_service::types::ProjectGenerationKind")
     }
     fn json_schema(
         _gen: &mut ::oxide_generation::macro_support::schemars08::r#gen::SchemaGenerator,
@@ -121,7 +125,7 @@ impl ::oxide_generation::macro_support::schemars08::JsonSchema for ProjectKind {
         let mut extensions = ::oxide_generation::macro_support::schemars08::Map::new();
         let rust_type = ::oxide_generation::macro_support::serde_json::json!(
             { "crate" : "my-service", "version" : "1.0.0", "path" :
-            "my_service::types::ProjectKind", }
+            "my_service::types::ProjectGenerationKind", }
         );
         extensions.insert("x-rust-type".to_string(), rust_type);
         schema.extensions = extensions;
@@ -129,4 +133,4 @@ impl ::oxide_generation::macro_support::schemars08::JsonSchema for ProjectKind {
     }
 }
 #[allow(unused)]
-pub type ProjectGeneration = ::oxide_generation::TypedGeneration<ProjectKind>;
+pub type ProjectGeneration = ::oxide_generation::TypedGeneration<ProjectGenerationKind>;

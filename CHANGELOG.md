@@ -3,6 +3,10 @@
 <!-- next-header -->
 ## Unreleased - ReleaseDate
 
+### Fixed
+
+- `TypedGeneration<T>`'s JSON schema now carries the same description as `Generation`'s, including when the `x-rust-type` extension is lifted from a kind's schema.
+
 ## [0.1.2] - 2026-08-21
 
 Fixed README links.

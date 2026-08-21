@@ -69,12 +69,15 @@ fn test_schemars_macro_integration() {
     use schemars::JsonSchema;
 
     // Test schema_name
-    assert_eq!(TestKind::schema_name(), "TestKind");
-    assert_eq!(AnotherKind::schema_name(), "AnotherKind");
+    assert_eq!(TestGenerationKind::schema_name(), "TestGenerationKind");
+    assert_eq!(
+        AnotherGenerationKind::schema_name(),
+        "AnotherGenerationKind"
+    );
 
     // Test that we can generate schemas.
     let mut generator = schemars::r#gen::SchemaGenerator::default();
-    let schema = TestKind::json_schema(&mut generator);
+    let schema = TestGenerationKind::json_schema(&mut generator);
 
     // Verify it's set to "not: true".
     let expected_schema = schemars::schema::Schema::Object(schemars::schema::SchemaObject {
@@ -90,7 +93,7 @@ fn test_schemars_macro_integration() {
                 serde_json::json!({
                     "crate": "my-crate",
                     "version": "1.0.0",
-                    "path": "my_crate::types::TestKind"
+                    "path": "my_crate::types::TestGenerationKind"
                 }),
             );
             extensions
@@ -103,6 +106,6 @@ fn test_schemars_macro_integration() {
 #[test]
 fn test_macro_generated_tags() {
     // Test that the generated kinds have the correct tags
-    assert_eq!(TestKind::TAG.as_str(), "test");
-    assert_eq!(AnotherKind::TAG.as_str(), "another");
+    assert_eq!(TestGenerationKind::TAG.as_str(), "test");
+    assert_eq!(AnotherGenerationKind::TAG.as_str(), "another");
 }

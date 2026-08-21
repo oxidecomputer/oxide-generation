@@ -14,9 +14,9 @@ impl_typed_generation_kinds! {
 #[test]
 fn test_generated_kinds() {
     // Test that the generated kinds have the correct tags.
-    assert_eq!(UserKind::TAG.as_str(), "user");
-    assert_eq!(OrganizationKind::TAG.as_str(), "organization");
-    assert_eq!(ProjectKind::TAG.as_str(), "project");
+    assert_eq!(UserGenerationKind::TAG.as_str(), "user");
+    assert_eq!(OrganizationGenerationKind::TAG.as_str(), "organization");
+    assert_eq!(ProjectGenerationKind::TAG.as_str(), "project");
 }
 
 #[test]
@@ -27,7 +27,7 @@ fn test_single_entry() {
         }
     }
 
-    assert_eq!(SingleKind::TAG.as_str(), "single");
+    assert_eq!(SingleGenerationKind::TAG.as_str(), "single");
     let single_generation = SingleGeneration::new();
     assert_eq!(single_generation.as_u64(), 1);
 }
@@ -45,10 +45,10 @@ fn test_snake_case_conversion() {
         }
     }
 
-    assert_eq!(HTTPClientKind::TAG.as_str(), "http_client");
-    assert_eq!(XMLParserKind::TAG.as_str(), "xml_parser");
-    assert_eq!(UserAccountKind::TAG.as_str(), "user_account");
-    assert_eq!(IOHandlerKind::TAG.as_str(), "io_handler");
+    assert_eq!(HTTPClientGenerationKind::TAG.as_str(), "http_client");
+    assert_eq!(XMLParserGenerationKind::TAG.as_str(), "xml_parser");
+    assert_eq!(UserAccountGenerationKind::TAG.as_str(), "user_account");
+    assert_eq!(IOHandlerGenerationKind::TAG.as_str(), "io_handler");
 }
 
 #[test]
@@ -74,8 +74,8 @@ fn test_global_attrs_param() {
 
     // The GlobalA and GlobalB kinds should impl Clone + Copy + fmt::Debug + Eq
     // by default, and also implement Hash.
-    assert_impl_all!(GlobalAKind: Clone, Copy, fmt::Debug, Eq, Hash);
-    assert_impl_all!(GlobalBKind: Clone, Copy, fmt::Debug, Eq, Hash);
+    assert_impl_all!(GlobalAGenerationKind: Clone, Copy, fmt::Debug, Eq, Hash);
+    assert_impl_all!(GlobalBGenerationKind: Clone, Copy, fmt::Debug, Eq, Hash);
 }
 
 /// Test that per-kind `attrs` override global ones and are applied only to the
@@ -97,13 +97,13 @@ fn test_per_kind_attrs_param() {
         }
     }
 
-    // AKind should implement Hash.
-    assert_impl_all!(AKind: Hash);
+    // AGenerationKind should implement Hash.
+    assert_impl_all!(AGenerationKind: Hash);
 
-    // BKind should not implement Hash.
-    assert_not_impl_all!(BKind: Hash);
+    // BGenerationKind should not implement Hash.
+    assert_not_impl_all!(BGenerationKind: Hash);
 
-    // CKind should implement Ord and PartialOrd, but not Hash.
-    assert_impl_all!(CKind: Ord, PartialOrd);
-    assert_not_impl_all!(CKind: Hash);
+    // CGenerationKind should implement Ord and PartialOrd, but not Hash.
+    assert_impl_all!(CGenerationKind: Ord, PartialOrd);
+    assert_not_impl_all!(CGenerationKind: Hash);
 }

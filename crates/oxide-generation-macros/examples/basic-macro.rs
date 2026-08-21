@@ -17,12 +17,12 @@ impl_typed_generation_kinds! {
 
 // The above macro generates:
 //
-// * pub enum UserKind {}
-// * pub type UserGeneration = TypedGeneration<UserKind>;
-// * pub type OrganizationKind {}
-// * pub type OrganizationGeneration = TypedGeneration<OrganizationKind>;
-// * pub type ProjectKind {}
-// * pub type ProjectGeneration = TypedGeneration<ProjectKind>;
+// * pub enum UserGenerationKind {}
+// * pub type UserGeneration = TypedGeneration<UserGenerationKind>;
+// * pub type OrganizationGenerationKind {}
+// * pub type OrganizationGeneration = TypedGeneration<OrganizationGenerationKind>;
+// * pub type ProjectGenerationKind {}
+// * pub type ProjectGeneration = TypedGeneration<ProjectGenerationKind>;
 
 fn main() {
     // Create some generation numbers of different types.
@@ -34,17 +34,17 @@ fn main() {
     println!(
         "User generation: {} (tag: {})",
         user_generation,
-        UserKind::TAG
+        UserGenerationKind::TAG
     );
     println!(
         "Organization generation: {} (tag: {})",
         org_generation,
-        OrganizationKind::TAG
+        OrganizationGenerationKind::TAG
     );
     println!(
         "Project generation: {} (tag: {})",
         project_generation,
-        ProjectKind::TAG
+        ProjectGenerationKind::TAG
     );
 
     // The compiler ensures type safety -- you can't accidentally mix up types.

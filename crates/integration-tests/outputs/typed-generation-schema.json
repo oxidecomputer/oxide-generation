@@ -12,6 +12,7 @@
   },
   "definitions": {
     "MyGeneration": {
+      "description": "Generation numbers stored in the database, used for optimistic concurrency control",
       "type": "integer",
       "format": "uint64",
       "minimum": 0.0,

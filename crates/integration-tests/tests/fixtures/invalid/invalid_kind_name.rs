@@ -23,6 +23,6 @@ fn main() {
     // UserGeneration and CustomGeneration should exist.
     let _user = UserGeneration::new();
     let _custom = CustomGeneration::new();
-    let _user_kind: UserKind;
-    let _custom_kind: CustomKind;
+    let _user_kind: UserGenerationKind;
+    let _custom_kind: CustomGenerationKind;
 }

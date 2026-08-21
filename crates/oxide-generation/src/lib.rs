@@ -767,14 +767,7 @@ mod schemars08_imp {
 
         #[inline]
         fn json_schema(_: &mut SchemaGenerator) -> Schema {
-            SchemaObject {
-                metadata: Some(Box::new(Metadata {
-                    description: Some(GENERATION_DESCRIPTION.to_owned()),
-                    ..Default::default()
-                })),
-                ..generation_schema_object()
-            }
-            .into()
+            generation_schema_object().into()
         }
     }
 
@@ -783,8 +776,8 @@ mod schemars08_imp {
     /// * `schema_name` is set to `"TypedGenerationFor"`, concatenated by the schema name of `T`.
     /// * `schema_id` is set to `format!("oxide_generation::TypedGeneration<{}>",
     ///   T::schema_id())`.
-    /// * `json_schema` is the same as the one for `Generation`, with the `x-rust-type` extension
-    ///   to allow automatic replacement in typify and progenitor.
+    /// * `json_schema` is the same as the one for `Generation` (including its description), with
+    ///   the `x-rust-type` extension to allow automatic replacement in typify and progenitor.
     impl<T> JsonSchema for TypedGeneration<T>
     where
         T: TypedGenerationKind + JsonSchema,
@@ -839,9 +832,13 @@ mod schemars08_imp {
     }
 
     // The schema shared by `Generation` and `TypedGeneration<T>`: a `u64` with a
-    // minimum of 0.
+    // minimum of 0, carrying the `Generation` description.
     fn generation_schema_object() -> SchemaObject {
         SchemaObject {
+            metadata: Some(Box::new(Metadata {
+                description: Some(GENERATION_DESCRIPTION.to_owned()),
+                ..Default::default()
+            })),
             instance_type: Some(InstanceType::Integer.into()),
             format: Some("uint64".to_string()),
             number: Some(Box::new(NumberValidation {

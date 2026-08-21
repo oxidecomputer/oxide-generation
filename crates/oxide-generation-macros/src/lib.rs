@@ -20,11 +20,11 @@
 //!     },
 //! }
 //!
-//! // This generates empty UserKind and BusinessUnitKind enums implementing
-//! // TypedGenerationKind, with the tags "user" and "business_unit" respectively.
-//! // Tags are snake_case versions of type names.
-//! assert_eq!(UserKind::TAG.as_str(), "user");
-//! assert_eq!(BusinessUnitKind::TAG.as_str(), "business_unit");
+//! // This generates empty UserGenerationKind and BusinessUnitGenerationKind
+//! // enums implementing TypedGenerationKind, with the tags "user" and
+//! // "business_unit" respectively. Tags are snake_case versions of type names.
+//! assert_eq!(UserGenerationKind::TAG.as_str(), "user");
+//! assert_eq!(BusinessUnitGenerationKind::TAG.as_str(), "business_unit");
 //!
 //! // The macro also generates UserGeneration and BusinessUnitGeneration type aliases.
 //! let user_generation = UserGeneration::new();
@@ -56,8 +56,8 @@ use quote::ToTokens;
 ///
 /// By default, for a kind `Foo`, this macro generates:
 ///
-/// * A `FooKind` type that implements `TypedGenerationKind`: `pub enum FooKind {}`.
-/// * A `FooGeneration` type alias: `pub type FooGeneration = TypedGeneration<FooKind>;`.
+/// * A `FooGenerationKind` type that implements `TypedGenerationKind`: `pub enum FooGenerationKind {}`.
+/// * A `FooGeneration` type alias: `pub type FooGeneration = TypedGeneration<FooGenerationKind>;`.
 ///
 /// ## Examples
 ///
@@ -72,11 +72,11 @@ use quote::ToTokens;
 ///     },
 /// }
 ///
-/// // This generates empty UserKind and BusinessUnitKind enums implementing
-/// // TypedGenerationKind, with the tags "user" and "business_unit" respectively.
-/// // Tags are snake_case versions of type names.
-/// assert_eq!(UserKind::TAG.as_str(), "user");
-/// assert_eq!(BusinessUnitKind::TAG.as_str(), "business_unit");
+/// // This generates empty UserGenerationKind and BusinessUnitGenerationKind
+/// // enums implementing TypedGenerationKind, with the tags "user" and
+/// // "business_unit" respectively. Tags are snake_case versions of type names.
+/// assert_eq!(UserGenerationKind::TAG.as_str(), "user");
+/// assert_eq!(BusinessUnitGenerationKind::TAG.as_str(), "business_unit");
 ///
 /// // The macro also generates UserGeneration and BusinessUnitGeneration type aliases.
 /// let user_generation = UserGeneration::new();
@@ -100,7 +100,7 @@ use quote::ToTokens;
 /// - `tag`: The tag to use for the kind (a string literal). *Optional, defaults
 ///   to the snake_case version of the type name.*
 /// - `type_name`: The name of the type to use for the kind (a Rust identifier).
-///   *Optional, defaults to `{Name}Kind`*.
+///   *Optional, defaults to `{Name}GenerationKind`*.
 /// - `alias`: The name of the type alias to use for the kind (a Rust
 ///   identifier). *Optional, defaults to `{Name}Generation`*.
 ///
@@ -129,7 +129,7 @@ use quote::ToTokens;
 ///
 /// // This generates types with the specified names:
 /// assert_eq!(MyUserKind::TAG.as_str(), "user");
-/// assert_eq!(OrganizationKind::TAG.as_str(), "org");
+/// assert_eq!(OrganizationGenerationKind::TAG.as_str(), "org");
 ///
 /// let user_generation = UserGeneration::new();
 /// let org_generation = OrgGeneration::new();

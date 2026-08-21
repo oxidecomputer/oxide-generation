@@ -1,21 +1,22 @@
 #[derive(Clone, Copy, Debug, PartialEq, Eq)]
-pub enum AccountKind {}
-impl ::my_custom_generation::TypedGenerationKind for AccountKind {
+pub enum AccountGenerationKind {}
+impl ::my_custom_generation::TypedGenerationKind for AccountGenerationKind {
     const TAG: ::my_custom_generation::TypedGenerationTag = ::my_custom_generation::TypedGenerationTag::new(
         "account",
     );
     const ALIAS: Option<&'static str> = Some(stringify!(AccountGeneration));
 }
 const _: () = {
-    let _ = <AccountKind as ::my_custom_generation::TypedGenerationKind>::TAG;
+    let _ = <AccountGenerationKind as ::my_custom_generation::TypedGenerationKind>::TAG;
 };
 #[cfg(feature = "internal-schemars08-tests")]
-impl ::my_custom_generation::macro_support::schemars08::JsonSchema for AccountKind {
+impl ::my_custom_generation::macro_support::schemars08::JsonSchema
+for AccountGenerationKind {
     fn schema_name() -> ::std::string::String {
-        "AccountKind".to_string()
+        "AccountGenerationKind".to_string()
     }
     fn schema_id() -> ::std::borrow::Cow<'static, str> {
-        ::std::borrow::Cow::Borrowed("my_api_service::models::AccountKind")
+        ::std::borrow::Cow::Borrowed("my_api_service::models::AccountGenerationKind")
     }
     fn json_schema(
         _gen: &mut ::my_custom_generation::macro_support::schemars08::r#gen::SchemaGenerator,
@@ -33,7 +34,7 @@ impl ::my_custom_generation::macro_support::schemars08::JsonSchema for AccountKi
         let mut extensions = ::my_custom_generation::macro_support::schemars08::Map::new();
         let rust_type = ::my_custom_generation::macro_support::serde_json::json!(
             { "crate" : "my-api-service", "version" : "2.1.0", "path" :
-            "my_api_service::models::AccountKind", }
+            "my_api_service::models::AccountGenerationKind", }
         );
         extensions.insert("x-rust-type".to_string(), rust_type);
         schema.extensions = extensions;
@@ -41,25 +42,28 @@ impl ::my_custom_generation::macro_support::schemars08::JsonSchema for AccountKi
     }
 }
 #[allow(unused)]
-pub type AccountGeneration = ::my_custom_generation::TypedGeneration<AccountKind>;
+pub type AccountGeneration = ::my_custom_generation::TypedGeneration<
+    AccountGenerationKind,
+>;
 #[derive(Clone, Copy, Debug, PartialEq, Eq)]
-pub enum TransactionKind {}
-impl ::my_custom_generation::TypedGenerationKind for TransactionKind {
+pub enum TransactionGenerationKind {}
+impl ::my_custom_generation::TypedGenerationKind for TransactionGenerationKind {
     const TAG: ::my_custom_generation::TypedGenerationTag = ::my_custom_generation::TypedGenerationTag::new(
         "transaction",
     );
     const ALIAS: Option<&'static str> = Some(stringify!(TransactionGeneration));
 }
 const _: () = {
-    let _ = <TransactionKind as ::my_custom_generation::TypedGenerationKind>::TAG;
+    let _ = <TransactionGenerationKind as ::my_custom_generation::TypedGenerationKind>::TAG;
 };
 #[cfg(feature = "internal-schemars08-tests")]
-impl ::my_custom_generation::macro_support::schemars08::JsonSchema for TransactionKind {
+impl ::my_custom_generation::macro_support::schemars08::JsonSchema
+for TransactionGenerationKind {
     fn schema_name() -> ::std::string::String {
-        "TransactionKind".to_string()
+        "TransactionGenerationKind".to_string()
     }
     fn schema_id() -> ::std::borrow::Cow<'static, str> {
-        ::std::borrow::Cow::Borrowed("my_api_service::models::TransactionKind")
+        ::std::borrow::Cow::Borrowed("my_api_service::models::TransactionGenerationKind")
     }
     fn json_schema(
         _gen: &mut ::my_custom_generation::macro_support::schemars08::r#gen::SchemaGenerator,
@@ -77,7 +81,7 @@ impl ::my_custom_generation::macro_support::schemars08::JsonSchema for Transacti
         let mut extensions = ::my_custom_generation::macro_support::schemars08::Map::new();
         let rust_type = ::my_custom_generation::macro_support::serde_json::json!(
             { "crate" : "my-api-service", "version" : "2.1.0", "path" :
-            "my_api_service::models::TransactionKind", }
+            "my_api_service::models::TransactionGenerationKind", }
         );
         extensions.insert("x-rust-type".to_string(), rust_type);
         schema.extensions = extensions;
@@ -86,26 +90,27 @@ impl ::my_custom_generation::macro_support::schemars08::JsonSchema for Transacti
 }
 #[allow(unused)]
 pub type TransactionGeneration = ::my_custom_generation::TypedGeneration<
-    TransactionKind,
+    TransactionGenerationKind,
 >;
 #[derive(Clone, Copy, Debug, PartialEq, Eq)]
-pub enum ApiKeyKind {}
-impl ::my_custom_generation::TypedGenerationKind for ApiKeyKind {
+pub enum ApiKeyGenerationKind {}
+impl ::my_custom_generation::TypedGenerationKind for ApiKeyGenerationKind {
     const TAG: ::my_custom_generation::TypedGenerationTag = ::my_custom_generation::TypedGenerationTag::new(
         "api_key",
     );
     const ALIAS: Option<&'static str> = Some(stringify!(ApiKeyGeneration));
 }
 const _: () = {
-    let _ = <ApiKeyKind as ::my_custom_generation::TypedGenerationKind>::TAG;
+    let _ = <ApiKeyGenerationKind as ::my_custom_generation::TypedGenerationKind>::TAG;
 };
 #[cfg(feature = "internal-schemars08-tests")]
-impl ::my_custom_generation::macro_support::schemars08::JsonSchema for ApiKeyKind {
+impl ::my_custom_generation::macro_support::schemars08::JsonSchema
+for ApiKeyGenerationKind {
     fn schema_name() -> ::std::string::String {
-        "ApiKeyKind".to_string()
+        "ApiKeyGenerationKind".to_string()
     }
     fn schema_id() -> ::std::borrow::Cow<'static, str> {
-        ::std::borrow::Cow::Borrowed("my_api_service::models::ApiKeyKind")
+        ::std::borrow::Cow::Borrowed("my_api_service::models::ApiKeyGenerationKind")
     }
     fn json_schema(
         _gen: &mut ::my_custom_generation::macro_support::schemars08::r#gen::SchemaGenerator,
@@ -123,7 +128,7 @@ impl ::my_custom_generation::macro_support::schemars08::JsonSchema for ApiKeyKin
         let mut extensions = ::my_custom_generation::macro_support::schemars08::Map::new();
         let rust_type = ::my_custom_generation::macro_support::serde_json::json!(
             { "crate" : "my-api-service", "version" : "2.1.0", "path" :
-            "my_api_service::models::ApiKeyKind", }
+            "my_api_service::models::ApiKeyGenerationKind", }
         );
         extensions.insert("x-rust-type".to_string(), rust_type);
         schema.extensions = extensions;
@@ -131,4 +136,6 @@ impl ::my_custom_generation::macro_support::schemars08::JsonSchema for ApiKeyKin
     }
 }
 #[allow(unused)]
-pub type ApiKeyGeneration = ::my_custom_generation::TypedGeneration<ApiKeyKind>;
+pub type ApiKeyGeneration = ::my_custom_generation::TypedGeneration<
+    ApiKeyGenerationKind,
+>;

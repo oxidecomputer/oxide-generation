@@ -75,7 +75,7 @@ pub fn impl_typed_generation_kinds(input: TokenStream) -> ImplKindsOutput {
         let tag_name = name.tag_name();
         let kind_name_ident = config
             .type_name
-            .unwrap_or_else(|| format_ident!("{}Kind", root_ident));
+            .unwrap_or_else(|| format_ident!("{}GenerationKind", root_ident));
         let alias_ident = config
             .alias
             .unwrap_or_else(|| format_ident!("{}Generation", root_ident));

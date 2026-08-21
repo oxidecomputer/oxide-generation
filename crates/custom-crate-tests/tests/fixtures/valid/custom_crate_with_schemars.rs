@@ -22,9 +22,9 @@ impl_typed_generation_kinds! {
 
 fn main() {
     // Test that the generated types exist and work with custom crate alias and schemars
-    let _account_kind_tag = AccountKind::TAG;
-    let _transaction_kind_tag = TransactionKind::TAG;
-    let _api_key_kind_tag = ApiKeyKind::TAG;
+    let _account_kind_tag = AccountGenerationKind::TAG;
+    let _transaction_kind_tag = TransactionGenerationKind::TAG;
+    let _api_key_kind_tag = ApiKeyGenerationKind::TAG;
 
     // Test type aliases exist
     let _account_generation: AccountGeneration;
@@ -32,7 +32,7 @@ fn main() {
     let _api_key_generation: ApiKeyGeneration;
 
     // Test that tags are properly snake_cased
-    assert_eq!(AccountKind::TAG.as_str(), "account");
-    assert_eq!(TransactionKind::TAG.as_str(), "transaction");
-    assert_eq!(ApiKeyKind::TAG.as_str(), "api_key");
+    assert_eq!(AccountGenerationKind::TAG.as_str(), "account");
+    assert_eq!(TransactionGenerationKind::TAG.as_str(), "transaction");
+    assert_eq!(ApiKeyGenerationKind::TAG.as_str(), "api_key");
 }

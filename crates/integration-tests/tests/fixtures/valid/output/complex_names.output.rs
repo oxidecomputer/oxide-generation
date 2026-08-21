@@ -1,78 +1,88 @@
 #[derive(Clone, Copy, Debug, PartialEq, Eq)]
-pub enum HTTPClientKind {}
-impl ::oxide_generation::TypedGenerationKind for HTTPClientKind {
+pub enum HTTPClientGenerationKind {}
+impl ::oxide_generation::TypedGenerationKind for HTTPClientGenerationKind {
     const TAG: ::oxide_generation::TypedGenerationTag = ::oxide_generation::TypedGenerationTag::new(
         "http_client",
     );
     const ALIAS: Option<&'static str> = Some(stringify!(HTTPClientGeneration));
 }
 const _: () = {
-    let _ = <HTTPClientKind as ::oxide_generation::TypedGenerationKind>::TAG;
+    let _ = <HTTPClientGenerationKind as ::oxide_generation::TypedGenerationKind>::TAG;
 };
 #[allow(unused)]
-pub type HTTPClientGeneration = ::oxide_generation::TypedGeneration<HTTPClientKind>;
+pub type HTTPClientGeneration = ::oxide_generation::TypedGeneration<
+    HTTPClientGenerationKind,
+>;
 #[derive(Clone, Copy, Debug, PartialEq, Eq)]
-pub enum XMLParserKind {}
-impl ::oxide_generation::TypedGenerationKind for XMLParserKind {
+pub enum XMLParserGenerationKind {}
+impl ::oxide_generation::TypedGenerationKind for XMLParserGenerationKind {
     const TAG: ::oxide_generation::TypedGenerationTag = ::oxide_generation::TypedGenerationTag::new(
         "xml_parser",
     );
     const ALIAS: Option<&'static str> = Some(stringify!(XMLParserGeneration));
 }
 const _: () = {
-    let _ = <XMLParserKind as ::oxide_generation::TypedGenerationKind>::TAG;
+    let _ = <XMLParserGenerationKind as ::oxide_generation::TypedGenerationKind>::TAG;
 };
 #[allow(unused)]
-pub type XMLParserGeneration = ::oxide_generation::TypedGeneration<XMLParserKind>;
+pub type XMLParserGeneration = ::oxide_generation::TypedGeneration<
+    XMLParserGenerationKind,
+>;
 #[derive(Clone, Copy, Debug, PartialEq, Eq)]
-pub enum APIKeyKind {}
-impl ::oxide_generation::TypedGenerationKind for APIKeyKind {
+pub enum APIKeyGenerationKind {}
+impl ::oxide_generation::TypedGenerationKind for APIKeyGenerationKind {
     const TAG: ::oxide_generation::TypedGenerationTag = ::oxide_generation::TypedGenerationTag::new(
         "api_key",
     );
     const ALIAS: Option<&'static str> = Some(stringify!(APIKeyGeneration));
 }
 const _: () = {
-    let _ = <APIKeyKind as ::oxide_generation::TypedGenerationKind>::TAG;
+    let _ = <APIKeyGenerationKind as ::oxide_generation::TypedGenerationKind>::TAG;
 };
 #[allow(unused)]
-pub type APIKeyGeneration = ::oxide_generation::TypedGeneration<APIKeyKind>;
+pub type APIKeyGeneration = ::oxide_generation::TypedGeneration<APIKeyGenerationKind>;
 #[derive(Clone, Copy, Debug, PartialEq, Eq)]
-pub enum IOHandlerKind {}
-impl ::oxide_generation::TypedGenerationKind for IOHandlerKind {
+pub enum IOHandlerGenerationKind {}
+impl ::oxide_generation::TypedGenerationKind for IOHandlerGenerationKind {
     const TAG: ::oxide_generation::TypedGenerationTag = ::oxide_generation::TypedGenerationTag::new(
         "io_handler",
     );
     const ALIAS: Option<&'static str> = Some(stringify!(IOHandlerGeneration));
 }
 const _: () = {
-    let _ = <IOHandlerKind as ::oxide_generation::TypedGenerationKind>::TAG;
+    let _ = <IOHandlerGenerationKind as ::oxide_generation::TypedGenerationKind>::TAG;
 };
 #[allow(unused)]
-pub type IOHandlerGeneration = ::oxide_generation::TypedGeneration<IOHandlerKind>;
+pub type IOHandlerGeneration = ::oxide_generation::TypedGeneration<
+    IOHandlerGenerationKind,
+>;
 #[derive(Clone, Copy, Debug, PartialEq, Eq)]
-pub enum UserAccountKind {}
-impl ::oxide_generation::TypedGenerationKind for UserAccountKind {
+pub enum UserAccountGenerationKind {}
+impl ::oxide_generation::TypedGenerationKind for UserAccountGenerationKind {
     const TAG: ::oxide_generation::TypedGenerationTag = ::oxide_generation::TypedGenerationTag::new(
         "user_account",
     );
     const ALIAS: Option<&'static str> = Some(stringify!(UserAccountGeneration));
 }
 const _: () = {
-    let _ = <UserAccountKind as ::oxide_generation::TypedGenerationKind>::TAG;
+    let _ = <UserAccountGenerationKind as ::oxide_generation::TypedGenerationKind>::TAG;
 };
 #[allow(unused)]
-pub type UserAccountGeneration = ::oxide_generation::TypedGeneration<UserAccountKind>;
+pub type UserAccountGeneration = ::oxide_generation::TypedGeneration<
+    UserAccountGenerationKind,
+>;
 #[derive(Clone, Copy, Debug, PartialEq, Eq)]
-pub enum ProjectTaskKind {}
-impl ::oxide_generation::TypedGenerationKind for ProjectTaskKind {
+pub enum ProjectTaskGenerationKind {}
+impl ::oxide_generation::TypedGenerationKind for ProjectTaskGenerationKind {
     const TAG: ::oxide_generation::TypedGenerationTag = ::oxide_generation::TypedGenerationTag::new(
         "project_task",
     );
     const ALIAS: Option<&'static str> = Some(stringify!(ProjectTaskGeneration));
 }
 const _: () = {
-    let _ = <ProjectTaskKind as ::oxide_generation::TypedGenerationKind>::TAG;
+    let _ = <ProjectTaskGenerationKind as ::oxide_generation::TypedGenerationKind>::TAG;
 };
 #[allow(unused)]
-pub type ProjectTaskGeneration = ::oxide_generation::TypedGeneration<ProjectTaskKind>;
+pub type ProjectTaskGeneration = ::oxide_generation::TypedGeneration<
+    ProjectTaskGenerationKind,
+>;

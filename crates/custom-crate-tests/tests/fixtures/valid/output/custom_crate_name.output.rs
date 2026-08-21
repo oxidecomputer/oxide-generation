@@ -1,41 +1,43 @@
 #[derive(Clone, Copy, Debug, PartialEq, Eq)]
-pub enum UserKind {}
-impl ::my_custom_generation::TypedGenerationKind for UserKind {
+pub enum UserGenerationKind {}
+impl ::my_custom_generation::TypedGenerationKind for UserGenerationKind {
     const TAG: ::my_custom_generation::TypedGenerationTag = ::my_custom_generation::TypedGenerationTag::new(
         "user",
     );
     const ALIAS: Option<&'static str> = Some(stringify!(UserGeneration));
 }
 const _: () = {
-    let _ = <UserKind as ::my_custom_generation::TypedGenerationKind>::TAG;
+    let _ = <UserGenerationKind as ::my_custom_generation::TypedGenerationKind>::TAG;
 };
 #[allow(unused)]
-pub type UserGeneration = ::my_custom_generation::TypedGeneration<UserKind>;
+pub type UserGeneration = ::my_custom_generation::TypedGeneration<UserGenerationKind>;
 #[derive(Clone, Copy, Debug, PartialEq, Eq)]
-pub enum OrganizationKind {}
-impl ::my_custom_generation::TypedGenerationKind for OrganizationKind {
+pub enum OrganizationGenerationKind {}
+impl ::my_custom_generation::TypedGenerationKind for OrganizationGenerationKind {
     const TAG: ::my_custom_generation::TypedGenerationTag = ::my_custom_generation::TypedGenerationTag::new(
         "organization",
     );
     const ALIAS: Option<&'static str> = Some(stringify!(OrganizationGeneration));
 }
 const _: () = {
-    let _ = <OrganizationKind as ::my_custom_generation::TypedGenerationKind>::TAG;
+    let _ = <OrganizationGenerationKind as ::my_custom_generation::TypedGenerationKind>::TAG;
 };
 #[allow(unused)]
 pub type OrganizationGeneration = ::my_custom_generation::TypedGeneration<
-    OrganizationKind,
+    OrganizationGenerationKind,
 >;
 #[derive(Clone, Copy, Debug, PartialEq, Eq)]
-pub enum ProductKind {}
-impl ::my_custom_generation::TypedGenerationKind for ProductKind {
+pub enum ProductGenerationKind {}
+impl ::my_custom_generation::TypedGenerationKind for ProductGenerationKind {
     const TAG: ::my_custom_generation::TypedGenerationTag = ::my_custom_generation::TypedGenerationTag::new(
         "product",
     );
     const ALIAS: Option<&'static str> = Some(stringify!(ProductGeneration));
 }
 const _: () = {
-    let _ = <ProductKind as ::my_custom_generation::TypedGenerationKind>::TAG;
+    let _ = <ProductGenerationKind as ::my_custom_generation::TypedGenerationKind>::TAG;
 };
 #[allow(unused)]
-pub type ProductGeneration = ::my_custom_generation::TypedGeneration<ProductKind>;
+pub type ProductGeneration = ::my_custom_generation::TypedGeneration<
+    ProductGenerationKind,
+>;

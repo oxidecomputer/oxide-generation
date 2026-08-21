@@ -3,6 +3,10 @@
 <!-- next-header -->
 ## Unreleased - ReleaseDate
 
+### Changed
+
+- The default `type_name` for a kind `Foo` is now `FooGenerationKind` rather than `FooKind`.
+
 ## [0.1.1] - 2026-08-21
 
 No user-visible changes -- dependency feature cleanup only.

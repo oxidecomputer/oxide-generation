@@ -9,13 +9,13 @@ error[E0428]: the name `UserGeneration` is defined multiple times
   |
   = note: `UserGeneration` must be defined only once in the type namespace of this module
 
-error[E0428]: the name `UserKind` is defined multiple times
+error[E0428]: the name `UserGenerationKind` is defined multiple times
  --> tests/fixtures/invalid/duplicate_def.rs:8:9
   |
-3 | enum UserKind {}
-  | ------------- previous definition of the type `UserKind` here
+3 | enum UserGenerationKind {}
+  | ----------------------- previous definition of the type `UserGenerationKind` here
 ...
 8 |         User = {},
-  |         ^^^^ `UserKind` redefined here
+  |         ^^^^ `UserGenerationKind` redefined here
   |
-  = note: `UserKind` must be defined only once in the type namespace of this module
+  = note: `UserGenerationKind` must be defined only once in the type namespace of this module
