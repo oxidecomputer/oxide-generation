@@ -3,6 +3,8 @@
 <!-- next-header -->
 ## Unreleased - ReleaseDate
 
+## [0.1.3] - 2026-08-21
+
 ### Fixed
 
 - `TypedGeneration<T>`'s JSON schema now carries the same description as `Generation`'s, including when the `x-rust-type` extension is lifted from a kind's schema.
@@ -27,6 +29,7 @@ Fix up feature set:
 Initial release.
 
 <!-- next-url -->
+[0.1.3]: https://github.com/oxidecomputer/oxide-generation/releases/oxide-generation-0.1.3
 [0.1.2]: https://github.com/oxidecomputer/oxide-generation/releases/oxide-generation-0.1.2
 [0.1.1]: https://github.com/oxidecomputer/oxide-generation/releases/oxide-generation-0.1.1
 [0.1.0]: https://github.com/oxidecomputer/oxide-generation/releases/oxide-generation-0.1.0
