@@ -44,7 +44,7 @@ let business_unit_generation = BusinessUnitGeneration::new();
 For more details and examples, see the documentation for
 [`impl_typed_generation_kinds!`].
 
-[`impl_typed_generation_kinds!`]: https://docs.rs/oxide-generation-macros/0.1.0/oxide_generation_macros/macro.impl_typed_generation_kinds.html "macro oxide_generation_macros::impl_typed_generation_kinds"
+[`impl_typed_generation_kinds!`]: https://docs.rs/oxide-generation-macros/0.1.1/oxide_generation_macros/macro.impl_typed_generation_kinds.html "macro oxide_generation_macros::impl_typed_generation_kinds"
 <!-- cargo-sync-rdme ]] -->
 
 ## License

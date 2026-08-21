@@ -3,6 +3,8 @@
 <!-- next-header -->
 ## Unreleased - ReleaseDate
 
+Fixed README links.
+
 ## [0.1.1] - 2026-08-21
 
 ### Changed

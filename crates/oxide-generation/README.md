@@ -141,11 +141,11 @@ dependencies, with an aim to be conservative.
 
 Within the 0.x series, MSRV updates will be accompanied by a minor version bump.
 
-[`Generation`]: https://docs.rs/oxide-generation/0.1.0/oxide_generation/struct.Generation.html "struct oxide_generation::Generation"
+[`Generation`]: https://docs.rs/oxide-generation/0.1.1/oxide_generation/struct.Generation.html "struct oxide_generation::Generation"
 [`oxide-generation-macros`]: https://docs.rs/oxide-generation-macros
-[`TypedGeneration`]: https://docs.rs/oxide-generation/0.1.0/oxide_generation/struct.TypedGeneration.html "struct oxide_generation::TypedGeneration"
-[`TypedGenerationKind`]: https://docs.rs/oxide-generation/0.1.0/oxide_generation/trait.TypedGenerationKind.html "trait oxide_generation::TypedGenerationKind"
-[`GenericGeneration`]: https://docs.rs/oxide-generation/0.1.0/oxide_generation/trait.GenericGeneration.html "trait oxide_generation::GenericGeneration"
+[`TypedGeneration`]: https://docs.rs/oxide-generation/0.1.1/oxide_generation/struct.TypedGeneration.html "struct oxide_generation::TypedGeneration"
+[`TypedGenerationKind`]: https://docs.rs/oxide-generation/0.1.1/oxide_generation/trait.TypedGenerationKind.html "trait oxide_generation::TypedGenerationKind"
+[`GenericGeneration`]: https://docs.rs/oxide-generation/0.1.1/oxide_generation/trait.GenericGeneration.html "trait oxide_generation::GenericGeneration"
 <!-- cargo-sync-rdme ]] -->
 
 ## License
