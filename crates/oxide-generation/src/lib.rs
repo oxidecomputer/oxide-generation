@@ -1,19 +1,27 @@
-//! A newtype wrapper around [`Generation`].
+//! Untyped and typed generation numbers.
 //!
 //! # Motivation
 //!
-//! Many large systems track a number of independent generation numbers: versions attached to
-//! individual resources, configuration generations, and so on. However, a bare integer does not
-//! carry information about the kind of counter it belongs to, which can lead to comparing or
-//! assigning the wrong generation number at runtime.
+//! Oxide's [Omicron](https://github.com/oxidecomputer/omicron) tracks many
+//! different kinds of generation numbers: versions attached to individual
+//! resources, configuration generations, and so on. However, a bare integer
+//! does not carry information about the kind of counter it belongs to, which
+//! can lead to comparing or assigning the wrong generation number at runtime.
 //!
-//! This crate provides a [`Generation`] type for untyped generation numbers, along with a wrapper
-//! type around it that allows you to specify the kind of counter a generation number belongs to.
+//! This crate provides a [`Generation`] type for untyped generation numbers,
+//! along with a wrapper type around it that allows you to specify the kind of
+//! counter a generation number belongs to.
+//!
+//! This crate is modeled after [newtype-uuid](https://docs.rs/newtype-uuid).
+//! Rust doesn't have [higher-kinded
+//! types](https://en.wikipedia.org/wiki/Kind_(type_theory)), so one must write
+//! separate libraries for each kind of thing one might want to add sets of
+//! newtypes around.
 //!
 //! # Example
 //!
 //! ```
-//! use oxide_typed_generation::{
+//! use oxide_generation::{
 //!     GenericGeneration, TypedGeneration, TypedGenerationKind, TypedGenerationTag,
 //! };
 //!
@@ -39,10 +47,10 @@
 //! ```
 //!
 //! If you have a large number of generation kinds, consider using
-//! [`oxide-typed-generation-macros`] which comes with several convenience features.
+//! [`oxide-generation-macros`] which comes with several convenience features.
 //!
 //! ```
-//! use oxide_typed_generation_macros::impl_typed_generation_kinds;
+//! use oxide_generation_macros::impl_typed_generation_kinds;
 //!
 //! // Invoke this macro with:
 //! impl_typed_generation_kinds! {
@@ -54,15 +62,15 @@
 //! }
 //! ```
 //!
-//! See [`oxide-typed-generation-macros`] for more information.
+//! See [`oxide-generation-macros`] for more information.
 //!
-//! [`oxide-typed-generation-macros`]: https://docs.rs/oxide-typed-generation-macros
+//! [`oxide-generation-macros`]: https://docs.rs/oxide-generation-macros
 //!
 //! For simpler cases, you can also write your own declarative macro. Use this
 //! template to get started:
 //!
 //! ```rust
-//! # use oxide_typed_generation::{TypedGenerationKind, TypedGenerationTag};
+//! # use oxide_generation::{TypedGenerationKind, TypedGenerationTag};
 //! macro_rules! impl_kinds {
 //!     ($($kind:ident => $tag:literal),* $(,)?) => {
 //!         $(
@@ -104,7 +112,7 @@
 //!
 //! # Features
 //!
-//! - `default`: Enables default features in the oxide-typed-generation crate.
+//! - `default`: Enables default features in the oxide-generation crate.
 //! - `std`: Enables the use of the standard library. *Enabled by default.*
 //! - `serde`: Enables serialization and deserialization support via Serde. *Not enabled by
 //!   default.*
@@ -130,11 +138,11 @@
 #![cfg_attr(not(feature = "std"), no_std)]
 #![cfg_attr(doc_cfg, feature(doc_cfg))]
 
-/// Macro support for [`oxide-typed-generation-macros`].
+/// Macro support for [`oxide-generation-macros`].
 ///
-/// This module re-exports types needed for [`oxide-typed-generation-macros`] to work.
+/// This module re-exports types needed for [`oxide-generation-macros`] to work.
 ///
-/// [`oxide-typed-generation-macros`]: https://docs.rs/oxide-typed-generation-macros
+/// [`oxide-generation-macros`]: https://docs.rs/oxide-generation-macros
 #[doc(hidden)]
 pub mod macro_support {
     #[cfg(feature = "schemars08")]
@@ -513,7 +521,7 @@ impl<T: TypedGenerationKind> TypedGeneration<T> {
     /// # Examples
     ///
     /// ```
-    /// use oxide_typed_generation::{TypedGeneration, TypedGenerationKind, TypedGenerationTag};
+    /// use oxide_generation::{TypedGeneration, TypedGenerationKind, TypedGenerationTag};
     ///
     /// // Let's say that these generation numbers track repositories for
     /// // different version control systems, such that you have a generic
@@ -735,11 +743,11 @@ mod schemars08_imp {
     const GENERATION_DESCRIPTION: &str =
         "Generation numbers stored in the database, used for optimistic concurrency control";
 
-    const CRATE_NAME: &str = "oxide-typed-generation";
+    const CRATE_NAME: &str = "oxide-generation";
     // 0.x crates are semver-compatible only within a minor version, so this is
     // "0.1" rather than "0".
     const CRATE_VERSION: &str = "0.1";
-    const CRATE_PATH: &str = "oxide_typed_generation::TypedGeneration";
+    const CRATE_PATH: &str = "oxide_generation::TypedGeneration";
 
     /// Implements `JsonSchema` for `Generation`.
     ///
@@ -753,7 +761,7 @@ mod schemars08_imp {
 
         #[inline]
         fn schema_id() -> std::borrow::Cow<'static, str> {
-            std::borrow::Cow::Borrowed("oxide_typed_generation::Generation")
+            std::borrow::Cow::Borrowed("oxide_generation::Generation")
         }
 
         #[inline]
@@ -772,7 +780,7 @@ mod schemars08_imp {
     /// Implements `JsonSchema` for `TypedGeneration<T>`, if `T` implements `JsonSchema`.
     ///
     /// * `schema_name` is set to `"TypedGenerationFor"`, concatenated by the schema name of `T`.
-    /// * `schema_id` is set to `format!("oxide_typed_generation::TypedGeneration<{}>",
+    /// * `schema_id` is set to `format!("oxide_generation::TypedGeneration<{}>",
     ///   T::schema_id())`.
     /// * `json_schema` is the same as the one for `Generation`, with the `x-rust-type` extension
     ///   to allow automatic replacement in typify and progenitor.
@@ -793,7 +801,7 @@ mod schemars08_imp {
         #[inline]
         fn schema_id() -> std::borrow::Cow<'static, str> {
             std::borrow::Cow::Owned(format!(
-                "oxide_typed_generation::TypedGeneration<{}>",
+                "oxide_generation::TypedGeneration<{}>",
                 T::schema_id()
             ))
         }
@@ -1016,10 +1024,10 @@ mod slog2_imp {
 /// [`TypedGeneration`]`<T>` will also implement [`JsonSchema`].
 ///
 /// If you have a large number of generation kinds, consider using
-/// [`oxide-typed-generation-macros`] which comes with several convenience features.
+/// [`oxide-generation-macros`] which comes with several convenience features.
 ///
 /// ```
-/// use oxide_typed_generation_macros::impl_typed_generation_kinds;
+/// use oxide_generation_macros::impl_typed_generation_kinds;
 ///
 /// // Invoke this macro with:
 /// impl_typed_generation_kinds! {
@@ -1031,9 +1039,9 @@ mod slog2_imp {
 /// }
 /// ```
 ///
-/// See [`oxide-typed-generation-macros`] for more information.
+/// See [`oxide-generation-macros`] for more information.
 ///
-/// [`oxide-typed-generation-macros`]: https://docs.rs/oxide-typed-generation-macros
+/// [`oxide-generation-macros`]: https://docs.rs/oxide-generation-macros
 /// [`JsonSchema`]: schemars::JsonSchema
 pub trait TypedGenerationKind: Send + Sync + 'static {
     /// The corresponding tag for this kind.
@@ -1050,9 +1058,9 @@ pub trait TypedGenerationKind: Send + Sync + 'static {
     /// constant is used by the schemars integration to refer to embed a
     /// reference to that alias in the schema, if available.
     ///
-    /// This is usually defined by the [`oxide-typed-generation-macros`] crate.
+    /// This is usually defined by the [`oxide-generation-macros`] crate.
     ///
-    /// [`oxide-typed-generation-macros`]: https://docs.rs/oxide-typed-generation-macros
+    /// [`oxide-generation-macros`]: https://docs.rs/oxide-generation-macros
     const ALIAS: Option<&'static str> = None;
 }
 
@@ -1346,7 +1354,8 @@ mod tests {
 
     #[test]
     fn test_try_from() {
-        // The maximum is accepted, but one past it is not.
+        // Zero and the maximum are accepted, but one past the maximum is not.
+        assert_eq!(Generation::try_from(0_u64).unwrap(), Generation::ZERO);
         assert_eq!(
             Generation::try_from(i64::MAX as u64).unwrap(),
             Generation::MAX
@@ -1390,6 +1399,7 @@ mod tests {
     #[test]
     fn test_from_str() {
         assert_eq!(Generation::from_str("0").unwrap().as_u64(), 0);
+        assert_eq!(Generation::from_str("1").unwrap(), Generation::new());
         assert_eq!(
             Generation::from_str("9223372036854775807").unwrap(),
             Generation::MAX
@@ -1418,6 +1428,8 @@ mod tests {
     #[test]
     #[cfg(feature = "std")]
     fn test_display_and_debug() {
+        assert_eq!(Generation::new().to_string(), "1");
+
         let generation = Generation::from_u32(5);
         assert_eq!(generation.to_string(), "5");
 
@@ -1453,6 +1465,30 @@ mod tests {
         let generation = Generation::from_u32(5);
         assert_eq!(serde_json::to_string(&generation).unwrap(), "5");
         assert_eq!(serde_json::from_str::<Generation>("5").unwrap(), generation);
+
+        // The first generation round-trips as the bare integer 1.
+        assert_eq!(serde_json::to_string(&Generation::new()).unwrap(), "1");
+        assert_eq!(
+            serde_json::from_str::<Generation>("1").unwrap(),
+            Generation::new()
+        );
+
+        // Both ends of the valid range deserialize, and values outside it --
+        // whether above the maximum or negative -- do not.
+        assert_eq!(
+            serde_json::from_str::<Generation>("0").unwrap(),
+            Generation::ZERO
+        );
+        assert_eq!(
+            serde_json::from_str::<Generation>(&Generation::MAX.as_u64().to_string()).unwrap(),
+            Generation::MAX
+        );
+        for bad_value in [Generation::MAX.as_u64() + 1, u64::MAX] {
+            serde_json::from_str::<Generation>(&bad_value.to_string()).unwrap_err();
+        }
+        for bad_value in [-1_i64, i64::MIN] {
+            serde_json::from_str::<Generation>(&bad_value.to_string()).unwrap_err();
+        }
 
         let typed = TypedGeneration::<MyKind>::from_u32(5);
         assert_eq!(serde_json::to_string(&typed).unwrap(), "5");

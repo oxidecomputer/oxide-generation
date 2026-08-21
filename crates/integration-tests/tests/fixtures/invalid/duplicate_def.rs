@@ -1,4 +1,4 @@
-use oxide_typed_generation_macros::impl_typed_generation_kinds;
+use oxide_generation_macros::impl_typed_generation_kinds;
 
 enum UserKind {}
 struct UserGeneration;

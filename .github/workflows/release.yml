@@ -7,8 +7,8 @@ on:
       - "*"
 
 jobs:
-  oxide-typed-generation-release:
-    if: github.repository_owner == 'oxidecomputer' && startsWith(github.ref_name, 'oxide-typed-generation-0')
+  oxide-generation-release:
+    if: github.repository_owner == 'oxidecomputer' && startsWith(github.ref_name, 'oxide-generation-0')
     runs-on: ubuntu-latest
     environment: release
     permissions:
@@ -26,19 +26,19 @@ jobs:
       - uses: taiki-e/install-action@v2
         with:
           tool: cargo-release@0.25
-      - run: just ci-cargo-release oxide-typed-generation
+      - run: just ci-cargo-release oxide-generation
         env:
           CARGO_REGISTRY_TOKEN: ${{ steps.auth.outputs.token }}
       - uses: taiki-e/create-gh-release-action@26b80501670402f1999aff4b934e1574ef2d3705 # v1
         with:
           changelog: CHANGELOG.md
-          title: oxide-typed-generation $version
+          title: oxide-generation $version
           branch: main
-          prefix: oxide-typed-generation
+          prefix: oxide-generation
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-  oxide-typed-generation-macros-release:
-    if: github.repository_owner == 'oxidecomputer' && startsWith(github.ref_name, 'oxide-typed-generation-macros-')
+  oxide-generation-macros-release:
+    if: github.repository_owner == 'oxidecomputer' && startsWith(github.ref_name, 'oxide-generation-macros-')
     runs-on: ubuntu-latest
     environment: release
     permissions:
@@ -56,14 +56,14 @@ jobs:
       - uses: taiki-e/install-action@v2
         with:
           tool: cargo-release@0.25
-      - run: just ci-cargo-release oxide-typed-generation-macros
+      - run: just ci-cargo-release oxide-generation-macros
         env:
           CARGO_REGISTRY_TOKEN: ${{ steps.auth.outputs.token }}
       - uses: taiki-e/create-gh-release-action@26b80501670402f1999aff4b934e1574ef2d3705 # v1
         with:
-          changelog: crates/oxide-typed-generation-macros/CHANGELOG.md
-          title: oxide-typed-generation-macros $version
+          changelog: crates/oxide-generation-macros/CHANGELOG.md
+          title: oxide-generation-macros $version
           branch: main
-          prefix: oxide-typed-generation-macros
+          prefix: oxide-generation-macros
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

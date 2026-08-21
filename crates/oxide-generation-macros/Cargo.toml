@@ -1,12 +1,12 @@
 [package]
-name = "oxide-typed-generation-macros"
+name = "oxide-generation-macros"
 version = "0.1.0"
 edition.workspace = true
 license.workspace = true
 repository.workspace = true
-documentation = "https://docs.rs/oxide-typed-generation-macros"
+documentation = "https://docs.rs/oxide-generation-macros"
 rust-version.workspace = true
-description = "Procedural macro for oxide-typed-generation"
+description = "Procedural macro for oxide-generation"
 readme = "README.md"
 keywords = ["generation", "version", "concurrency", "newtype"]
 
@@ -22,7 +22,7 @@ serde_tokenstream.workspace = true
 syn = { workspace = true, features = ["full"] }
 
 [dev-dependencies]
-oxide-typed-generation.workspace = true
+oxide-generation.workspace = true
 serde = { workspace = true, features = ["derive"] }
 static_assertions.workspace = true
 
@@ -37,5 +37,5 @@ pre-release-replacements = [
     { file = "CHANGELOG.md", search = "Unreleased", replace = "[{{version}}]", min = 1 },
     { file = "CHANGELOG.md", search = "ReleaseDate", replace = "{{date}}", min = 1 },
     { file = "CHANGELOG.md", search = "<!-- next-header -->", replace = "<!-- next-header -->\n## Unreleased - ReleaseDate\n", exactly = 1 },
-    { file = "CHANGELOG.md", search = "<!-- next-url -->", replace = "<!-- next-url -->\n[{{version}}]: https://github.com/oxidecomputer/oxide-typed-generation/releases/oxide-typed-generation-macros-{{version}}", exactly = 1 },
+    { file = "CHANGELOG.md", search = "<!-- next-url -->", replace = "<!-- next-url -->\n[{{version}}]: https://github.com/oxidecomputer/oxide-generation/releases/oxide-generation-macros-{{version}}", exactly = 1 },
 ]

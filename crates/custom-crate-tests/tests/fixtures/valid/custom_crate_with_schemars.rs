@@ -1,9 +1,9 @@
 use my_custom_generation::TypedGenerationKind;
-use oxide_typed_generation_macros::impl_typed_generation_kinds;
+use oxide_generation_macros::impl_typed_generation_kinds;
 
 impl_typed_generation_kinds! {
     settings = {
-        oxide_typed_generation_crate = my_custom_generation,
+        oxide_generation_crate = my_custom_generation,
         schemars08 = {
             attrs = [#[cfg(feature = "internal-schemars08-tests")]],
             rust_type = {

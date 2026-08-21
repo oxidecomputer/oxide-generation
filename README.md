@@ -1,1 +1,1 @@
-crates/oxide-typed-generation/README.md
+crates/oxide-generation/README.md

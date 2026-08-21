@@ -8,7 +8,7 @@ use syn::parse_quote;
 // would be to make this a unit test, but the integration test harness gives us
 // automatic discovery of tests in the `fixtures/` directory, along with
 // separate reporting for each test. Those are nice benefits.
-#[path = "../../oxide-typed-generation-macros/src/internals/mod.rs"]
+#[path = "../../oxide-generation-macros/src/internals/mod.rs"]
 mod internals;
 
 /// Snapshot tests for valid inputs.

@@ -9,8 +9,8 @@ publish = false
 datatest-stable.workspace = true
 expectorate.workspace = true
 heck.workspace = true
-oxide-typed-generation-macros.workspace = true
-oxide-typed-generation.workspace = true
+oxide-generation-macros.workspace = true
+oxide-generation.workspace = true
 prettyplease.workspace = true
 proc-macro2.workspace = true
 proptest = { workspace = true, optional = true }
@@ -28,14 +28,14 @@ trybuild.workspace = true
 
 [features]
 internal-schemars08-tests = [
-    "oxide-typed-generation/schemars08",
-    "oxide-typed-generation/serde",
+    "oxide-generation/schemars08",
+    "oxide-generation/serde",
     "dep:schemars",
     "dep:serde_json",
     "dep:typify",
 ]
 internal-proptest1-tests = [
-    "oxide-typed-generation/proptest1",
+    "oxide-generation/proptest1",
     "dep:proptest",
     "dep:test-strategy",
 ]

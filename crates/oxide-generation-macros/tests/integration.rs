@@ -1,5 +1,5 @@
-use oxide_typed_generation::TypedGenerationKind;
-use oxide_typed_generation_macros::impl_typed_generation_kinds;
+use oxide_generation::TypedGenerationKind;
+use oxide_generation_macros::impl_typed_generation_kinds;
 use static_assertions::{assert_impl_all, assert_not_impl_all};
 use std::{fmt, hash::Hash};
 

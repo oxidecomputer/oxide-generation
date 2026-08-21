@@ -2,7 +2,7 @@
 //! this case, we expect the macro itself to be unconditional.
 
 #[cfg(feature = "internal-schemars08-tests")]
-oxide_typed_generation_macros::impl_typed_generation_kinds! {
+oxide_generation_macros::impl_typed_generation_kinds! {
     settings = {
         schemars08 = {
             rust_type = {
@@ -26,7 +26,7 @@ oxide_typed_generation_macros::impl_typed_generation_kinds! {
 fn main() {
     #[cfg(feature = "internal-schemars08-tests")]
     {
-        use oxide_typed_generation::TypedGenerationKind;
+        use oxide_generation::TypedGenerationKind;
 
         // Test that the generated types exist and work
         let _user_kind_tag = UserKind::TAG;

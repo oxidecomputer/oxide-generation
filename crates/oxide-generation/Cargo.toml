@@ -1,11 +1,11 @@
 [package]
-name = "oxide-typed-generation"
+name = "oxide-generation"
 version = "0.1.0"
 edition.workspace = true
 license.workspace = true
 repository.workspace = true
-description = "Newtype wrapper around generation numbers"
-documentation = "https://docs.rs/oxide-typed-generation"
+description = "Untyped and typed generation numbers"
+documentation = "https://docs.rs/oxide-generation"
 readme = "README.md"
 keywords = ["generation", "version", "concurrency", "newtype"]
 categories = ["data-structures", "no-std"]
@@ -27,7 +27,7 @@ schemars = { workspace = true, optional = true }
 slog = { workspace = true, optional = true }
 
 [dev-dependencies]
-oxide-typed-generation-macros.workspace = true
+oxide-generation-macros.workspace = true
 serde_json.workspace = true
 
 [features]
@@ -51,5 +51,5 @@ pre-release-replacements = [
     { file = "../../CHANGELOG.md", search = "Unreleased", replace = "[{{version}}]", min = 1 },
     { file = "../../CHANGELOG.md", search = "ReleaseDate", replace = "{{date}}", min = 1 },
     { file = "../../CHANGELOG.md", search = "<!-- next-header -->", replace = "<!-- next-header -->\n## Unreleased - ReleaseDate\n", exactly = 1 },
-    { file = "../../CHANGELOG.md", search = "<!-- next-url -->", replace = "<!-- next-url -->\n[{{version}}]: https://github.com/oxidecomputer/oxide-typed-generation/releases/oxide-typed-generation-{{version}}", exactly = 1 },
+    { file = "../../CHANGELOG.md", search = "<!-- next-url -->", replace = "<!-- next-url -->\n[{{version}}]: https://github.com/oxidecomputer/oxide-generation/releases/oxide-generation-{{version}}", exactly = 1 },
 ]

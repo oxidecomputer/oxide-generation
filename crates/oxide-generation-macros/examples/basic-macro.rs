@@ -3,8 +3,8 @@
 //! This example demonstrates how to use the macro to generate typed generation kinds
 //! and their corresponding type aliases.
 
-use oxide_typed_generation::TypedGenerationKind;
-use oxide_typed_generation_macros::impl_typed_generation_kinds;
+use oxide_generation::TypedGenerationKind;
+use oxide_generation_macros::impl_typed_generation_kinds;
 
 // Generate typed generation kinds for different entities in our application.
 impl_typed_generation_kinds! {

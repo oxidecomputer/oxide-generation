@@ -8,7 +8,7 @@ publish = false
 [dependencies]
 integration-tests.workspace = true
 my-custom-generation.workspace = true
-oxide-typed-generation-macros.workspace = true
+oxide-generation-macros.workspace = true
 serde_json = { workspace = true, optional = true }
 
 [dev-dependencies]

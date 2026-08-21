@@ -1,7 +1,7 @@
-//! JSON schema tests for oxide-typed-generation.
+//! JSON schema tests for oxide-generation.
 
-use oxide_typed_generation::TypedGenerationKind;
-use oxide_typed_generation_macros::impl_typed_generation_kinds;
+use oxide_generation::TypedGenerationKind;
+use oxide_generation_macros::impl_typed_generation_kinds;
 use schemars::JsonSchema;
 use serde::{Deserialize, Serialize};
 use typify::{CrateVers, TypeSpaceSettings};
@@ -40,11 +40,11 @@ fn test_json_schema_snapshot() {
 
     // Use typify with crate directives -- this is the intended usage with
     // x-rust-type. The x-rust-type extension enables automatic replacement, so
-    // that we don't try to generate Rust code for either oxide-typed-generation
-    // or my-crate.
+    // that we don't try to generate Rust code for either oxide-generation or
+    // my-crate.
     let mut settings = TypeSpaceSettings::default();
     settings
-        .with_crate("oxide-typed-generation", CrateVers::Any, None)
+        .with_crate("oxide-generation", CrateVers::Any, None)
         .with_crate("my-crate", CrateVers::Any, None);
     let output = generate_schema_with(&settings, schema);
     expectorate::assert_contents("outputs/schema-rust-with-replace.rs", &output);

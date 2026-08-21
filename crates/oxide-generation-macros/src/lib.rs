@@ -1,7 +1,7 @@
-//! Procedural macro for [`oxide-typed-generation`](https://docs.rs/oxide-typed-generation).
+//! Procedural macro for [`oxide-generation`](https://docs.rs/oxide-generation).
 //!
 //! This crate provides a procedural macro to help with creating
-//! [`oxide-typed-generation`](https://docs.rs/oxide-typed-generation) instances.
+//! [`oxide-generation`](https://docs.rs/oxide-generation) instances.
 //!
 //! For more information, see the documentation for [`impl_typed_generation_kinds!`].
 //!
@@ -10,8 +10,8 @@
 //! Basic usage:
 //!
 //! ```
-//! use oxide_typed_generation::TypedGenerationKind;
-//! use oxide_typed_generation_macros::impl_typed_generation_kinds;
+//! use oxide_generation::TypedGenerationKind;
+//! use oxide_generation_macros::impl_typed_generation_kinds;
 //!
 //! impl_typed_generation_kinds! {
 //!     kinds = {
@@ -62,8 +62,8 @@ use quote::ToTokens;
 /// ## Examples
 ///
 /// ```
-/// use oxide_typed_generation::TypedGenerationKind;
-/// use oxide_typed_generation_macros::impl_typed_generation_kinds;
+/// use oxide_generation::TypedGenerationKind;
+/// use oxide_generation_macros::impl_typed_generation_kinds;
 ///
 /// impl_typed_generation_kinds! {
 ///     kinds = {
@@ -88,7 +88,7 @@ use quote::ToTokens;
 /// * The `Kind` types are all empty enums, also known as *marker* or
 ///   *uninhabited* enums. This means that values for these types cannot be
 ///   created. (Using empty enums is the recommended approach for
-///   `oxide-typed-generation`).
+///   `oxide-generation`).
 ///
 /// # Per-kind settings
 ///
@@ -112,8 +112,8 @@ use quote::ToTokens;
 /// In this example, we derive `PartialOrd` and `Ord` for `MyUserKind`.
 ///
 /// ```
-/// use oxide_typed_generation::TypedGenerationKind;
-/// use oxide_typed_generation_macros::impl_typed_generation_kinds;
+/// use oxide_generation::TypedGenerationKind;
+/// use oxide_generation_macros::impl_typed_generation_kinds;
 ///
 /// impl_typed_generation_kinds! {
 ///     kinds = {
@@ -145,8 +145,8 @@ use quote::ToTokens;
 /// - `attrs`: A list of attributes to apply to all generated `Kind` types.
 ///   Per-kind attributes, if provided, will override these. *Optional, defaults
 ///   to the empty list.*
-/// - `oxide_typed_generation_crate`: The name of the `oxide-typed-generation` crate (a Rust
-///   identifier). *Optional, defaults to `oxide_typed_generation`.*
+/// - `oxide_generation_crate`: The name of the `oxide-generation` crate (a Rust
+///   identifier). *Optional, defaults to `oxide_generation`.*
 /// - `schemars08`: If defined, generates JSON Schema support for the given
 ///   types using [`schemars` 0.8]. *Optional.*
 ///
@@ -155,7 +155,7 @@ use quote::ToTokens;
 /// If the `schemars08` global setting is defined, the macro generates JSON
 /// Schema support for the `Kind` instances using [schemars 0.8].
 ///
-/// **To enable JSON Schema support, you'll need to enable `oxide-typed-generation`'s
+/// **To enable JSON Schema support, you'll need to enable `oxide-generation`'s
 /// `schemars08` feature.**
 ///
 /// Within `settings.schemars08`, the options are:
@@ -192,13 +192,13 @@ use quote::ToTokens;
 /// An example with all global settings defined:
 ///
 /// ```
-/// use oxide_typed_generation::TypedGenerationKind;
-/// use oxide_typed_generation_macros::impl_typed_generation_kinds;
+/// use oxide_generation::TypedGenerationKind;
+/// use oxide_generation_macros::impl_typed_generation_kinds;
 ///
 /// impl_typed_generation_kinds! {
 ///     settings = {
 ///         attrs = [#[derive(PartialOrd, Ord)]],
-///         oxide_typed_generation_crate = oxide_typed_generation,
+///         oxide_generation_crate = oxide_generation,
 ///         schemars08 = {
 ///             attrs = [#[cfg(feature = "schemars")]],
 ///             rust_type = {
@@ -221,8 +221,8 @@ use quote::ToTokens;
 /// ```
 ///
 /// For a working end-to-end example, see the
-/// [`e2e-example`](https://github.com/oxidecomputer/oxide-typed-generation/tree/main/e2e-example)
-/// directory in the oxide-typed-generation repository.
+/// [`e2e-example`](https://github.com/oxidecomputer/oxide-generation/tree/main/e2e-example)
+/// directory in the oxide-generation repository.
 #[proc_macro]
 pub fn impl_typed_generation_kinds(input: TokenStream) -> TokenStream {
     internals::impl_typed_generation_kinds(input.into())

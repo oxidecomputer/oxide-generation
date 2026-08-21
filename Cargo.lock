@@ -188,8 +188,8 @@ version = "0.1.0"
 dependencies = [
  "datatest-stable",
  "integration-tests",
- "oxide-typed-generation",
- "oxide-typed-generation-macros",
+ "oxide-generation",
+ "oxide-generation-macros",
  "serde_json",
  "trybuild",
 ]
@@ -237,8 +237,8 @@ checksum = "d0881ea181b1df73ff77ffaaf9c7544ecc11e82fba9b5f27b262a3c73a332555"
 name = "e2e-kinds"
 version = "0.1.0"
 dependencies = [
- "oxide-typed-generation",
- "oxide-typed-generation-macros",
+ "oxide-generation",
+ "oxide-generation-macros",
  "serde",
 ]
 
@@ -247,7 +247,7 @@ name = "e2e-schema-consumer"
 version = "0.1.0"
 dependencies = [
  "e2e-kinds",
- "oxide-typed-generation",
+ "oxide-generation",
  "serde",
  "typify",
 ]
@@ -393,8 +393,8 @@ dependencies = [
  "datatest-stable",
  "expectorate",
  "heck",
- "oxide-typed-generation",
- "oxide-typed-generation-macros",
+ "oxide-generation",
+ "oxide-generation-macros",
  "prettyplease",
  "proc-macro2",
  "proptest",
@@ -494,11 +494,11 @@ source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "384b8ab6d37215f3c5301a95a4accb5d64aa607f1fcb26a11b5303878451b4fe"
 
 [[package]]
-name = "oxide-typed-generation"
+name = "oxide-generation"
 version = "0.1.0"
 dependencies = [
  "daft",
- "oxide-typed-generation-macros",
+ "oxide-generation-macros",
  "proptest",
  "schemars",
  "serde",
@@ -507,11 +507,11 @@ dependencies = [
 ]
 
 [[package]]
-name = "oxide-typed-generation-macros"
+name = "oxide-generation-macros"
 version = "0.1.0"
 dependencies = [
  "heck",
- "oxide-typed-generation",
+ "oxide-generation",
  "proc-macro2",
  "quote",
  "serde",

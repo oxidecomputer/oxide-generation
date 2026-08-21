@@ -1,6 +1,6 @@
 //! Tests for the property-based infrastructure.
 
-use oxide_typed_generation::{
+use oxide_generation::{
     Generation, GenericGeneration, TypedGeneration, TypedGenerationKind, TypedGenerationTag,
 };
 use test_strategy::proptest;

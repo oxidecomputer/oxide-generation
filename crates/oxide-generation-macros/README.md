@@ -1,17 +1,17 @@
 <!-- cargo-sync-rdme title [[ -->
-# oxide-typed-generation-macros
+# oxide-generation-macros
 <!-- cargo-sync-rdme ]] -->
 <!-- cargo-sync-rdme badge [[ -->
-![License: MIT OR Apache-2.0](https://img.shields.io/crates/l/oxide-typed-generation-macros.svg?)
-[![crates.io](https://img.shields.io/crates/v/oxide-typed-generation-macros.svg?logo=rust)](https://crates.io/crates/oxide-typed-generation-macros)
-[![docs.rs](https://img.shields.io/docsrs/oxide-typed-generation-macros.svg?logo=docs.rs)](https://docs.rs/oxide-typed-generation-macros)
+![License: MIT OR Apache-2.0](https://img.shields.io/crates/l/oxide-generation-macros.svg?)
+[![crates.io](https://img.shields.io/crates/v/oxide-generation-macros.svg?logo=rust)](https://crates.io/crates/oxide-generation-macros)
+[![docs.rs](https://img.shields.io/docsrs/oxide-generation-macros.svg?logo=docs.rs)](https://docs.rs/oxide-generation-macros)
 [![Rust: ^1.85.0](https://img.shields.io/badge/rust-^1.85.0-93450a.svg?logo=rust)](https://doc.rust-lang.org/cargo/reference/manifest.html#the-rust-version-field)
 <!-- cargo-sync-rdme ]] -->
 <!-- cargo-sync-rdme rustdoc [[ -->
-Procedural macro for [`oxide-typed-generation`](https://docs.rs/oxide-typed-generation).
+Procedural macro for [`oxide-generation`](https://docs.rs/oxide-generation).
 
 This crate provides a procedural macro to help with creating
-[`oxide-typed-generation`](https://docs.rs/oxide-typed-generation) instances.
+[`oxide-generation`](https://docs.rs/oxide-generation) instances.
 
 For more information, see the documentation for [`impl_typed_generation_kinds!`].
 
@@ -20,8 +20,8 @@ For more information, see the documentation for [`impl_typed_generation_kinds!`]
 Basic usage:
 
 ````rust
-use oxide_typed_generation::TypedGenerationKind;
-use oxide_typed_generation_macros::impl_typed_generation_kinds;
+use oxide_generation::TypedGenerationKind;
+use oxide_generation_macros::impl_typed_generation_kinds;
 
 impl_typed_generation_kinds! {
     kinds = {
@@ -44,7 +44,7 @@ let business_unit_generation = BusinessUnitGeneration::new();
 For more details and examples, see the documentation for
 [`impl_typed_generation_kinds!`].
 
-[`impl_typed_generation_kinds!`]: https://docs.rs/oxide-typed-generation-macros/0.1.0/oxide_typed_generation_macros/macro.impl_typed_generation_kinds.html "macro oxide_typed_generation_macros::impl_typed_generation_kinds"
+[`impl_typed_generation_kinds!`]: https://docs.rs/oxide-generation-macros/0.1.0/oxide_generation_macros/macro.impl_typed_generation_kinds.html "macro oxide_generation_macros::impl_typed_generation_kinds"
 <!-- cargo-sync-rdme ]] -->
 
 ## License

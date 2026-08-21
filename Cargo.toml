@@ -5,7 +5,7 @@ members = ["crates/*", "e2e-example/*"]
 [workspace.package]
 edition = "2024"
 license = "MIT OR Apache-2.0"
-repository = "https://github.com/oxidecomputer/oxide-typed-generation"
+repository = "https://github.com/oxidecomputer/oxide-generation"
 rust-version = "1.85"
 
 [workspace.dependencies]
@@ -14,9 +14,9 @@ datatest-stable = "0.3.2"
 expectorate = "1.2.0"
 heck = "0.5"
 integration-tests = { path = "crates/integration-tests" }
-my-custom-generation = { path = "crates/oxide-typed-generation", package = "oxide-typed-generation" }
-oxide-typed-generation = { path = "crates/oxide-typed-generation" }
-oxide-typed-generation-macros = { path = "crates/oxide-typed-generation-macros" }
+my-custom-generation = { path = "crates/oxide-generation", package = "oxide-generation" }
+oxide-generation = { path = "crates/oxide-generation" }
+oxide-generation-macros = { path = "crates/oxide-generation-macros" }
 prettyplease = "0.3.0"
 proc-macro2 = "1.0"
 quote = "1.0"

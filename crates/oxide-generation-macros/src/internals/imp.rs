@@ -29,12 +29,12 @@ pub fn impl_typed_generation_kinds(input: TokenStream) -> ImplKindsOutput {
         }
     };
 
-    let oxide_typed_generation_ident = syn::Ident::new("oxide_typed_generation", input.span());
-    let oxide_typed_generation_crate = params
+    let oxide_generation_ident = syn::Ident::new("oxide_generation", input.span());
+    let oxide_generation_crate = params
         .settings
-        .oxide_typed_generation_crate
+        .oxide_generation_crate
         .as_ref()
-        .map_or_else(|| &oxide_typed_generation_ident, |crate_name| &**crate_name);
+        .map_or_else(|| &oxide_generation_ident, |crate_name| &**crate_name);
 
     let mut out = quote! {};
 
@@ -64,7 +64,7 @@ pub fn impl_typed_generation_kinds(input: TokenStream) -> ImplKindsOutput {
             KindOrExplicitTag::Kind(&root_ident)
         };
 
-        // Validate the tag name here using the same logic as in oxide-typed-generation.
+        // Validate the tag name here using the same logic as in oxide-generation.
         // Doing so in the proc macro results in better error messages.
         validate_tag_name(&name, errors.new_child());
         if errors.has_critical_errors() {
@@ -89,7 +89,7 @@ pub fn impl_typed_generation_kinds(input: TokenStream) -> ImplKindsOutput {
                 &kind_name_ident,
                 &kind_name_ident.to_string(),
                 schemars_settings,
-                oxide_typed_generation_crate,
+                oxide_generation_crate,
             )
         } else {
             quote! {}
@@ -100,8 +100,8 @@ pub fn impl_typed_generation_kinds(input: TokenStream) -> ImplKindsOutput {
             #(#attrs)*
             pub enum #kind_name_ident {}
 
-            impl ::#oxide_typed_generation_crate::TypedGenerationKind for #kind_name_ident {
-                const TAG: ::#oxide_typed_generation_crate::TypedGenerationTag = ::#oxide_typed_generation_crate::TypedGenerationTag::new(#tag_name);
+            impl ::#oxide_generation_crate::TypedGenerationKind for #kind_name_ident {
+                const TAG: ::#oxide_generation_crate::TypedGenerationTag = ::#oxide_generation_crate::TypedGenerationTag::new(#tag_name);
 
                 const ALIAS: Option<&'static str> = Some(stringify!(#alias_ident));
             }
@@ -109,13 +109,13 @@ pub fn impl_typed_generation_kinds(input: TokenStream) -> ImplKindsOutput {
             // Unused associated constants aren't evaluated, so force an
             // evaluation here to validate the tag at the definition site.
             const _: () = {
-                let _ = <#kind_name_ident as ::#oxide_typed_generation_crate::TypedGenerationKind>::TAG;
+                let _ = <#kind_name_ident as ::#oxide_generation_crate::TypedGenerationKind>::TAG;
             };
 
             #schemars_impl
 
             #[allow(unused)]
-            pub type #alias_ident = ::#oxide_typed_generation_crate::TypedGeneration<#kind_name_ident>;
+            pub type #alias_ident = ::#oxide_generation_crate::TypedGeneration<#kind_name_ident>;
         };
 
         out.extend(expanded);
@@ -267,9 +267,9 @@ struct ImplKindsParams {
 #[derive(Deserialize, Default)]
 #[serde(deny_unknown_fields)]
 struct GlobalSettings {
-    /// The name of the oxide-typed-generation crate.
+    /// The name of the oxide-generation crate.
     #[serde(default)]
-    oxide_typed_generation_crate: Option<ParseWrapper<syn::Ident>>,
+    oxide_generation_crate: Option<ParseWrapper<syn::Ident>>,
 
     /// Attributes to apply to generated types.
     #[serde(default)]
@@ -381,7 +381,7 @@ fn generate_schemars_impl(
     kind_name_ident: &syn::Ident,
     kind_name: &str,
     schemars_settings: &SchemarsSettings,
-    oxide_typed_generation_crate: &syn::Ident,
+    oxide_generation_crate: &syn::Ident,
 ) -> proc_macro2::TokenStream {
     let attrs = schemars_settings.attrs.iter().map(|attrs| &**attrs);
     let crate_name = &schemars_settings.rust_type.crate_name;
@@ -393,7 +393,7 @@ fn generate_schemars_impl(
 
     quote! {
         #(#attrs)*
-        impl ::#oxide_typed_generation_crate::macro_support::schemars08::JsonSchema for #kind_name_ident {
+        impl ::#oxide_generation_crate::macro_support::schemars08::JsonSchema for #kind_name_ident {
             fn schema_name() -> ::std::string::String {
                 #kind_name.to_string()
             }
@@ -403,9 +403,9 @@ fn generate_schemars_impl(
             }
 
             fn json_schema(
-                _gen: &mut ::#oxide_typed_generation_crate::macro_support::schemars08::r#gen::SchemaGenerator,
-            ) -> ::#oxide_typed_generation_crate::macro_support::schemars08::schema::Schema {
-                use ::#oxide_typed_generation_crate::macro_support::schemars08::schema::*;
+                _gen: &mut ::#oxide_generation_crate::macro_support::schemars08::r#gen::SchemaGenerator,
+            ) -> ::#oxide_generation_crate::macro_support::schemars08::schema::Schema {
+                use ::#oxide_generation_crate::macro_support::schemars08::schema::*;
 
                 let mut schema = SchemaObject {
                     subschemas: ::std::option::Option::Some(Box::new(SubschemaValidation {
@@ -416,8 +416,8 @@ fn generate_schemars_impl(
                 };
 
                 // Add the x-rust-type extension.
-                let mut extensions = ::#oxide_typed_generation_crate::macro_support::schemars08::Map::new();
-                let rust_type = ::#oxide_typed_generation_crate::macro_support::serde_json::json!({
+                let mut extensions = ::#oxide_generation_crate::macro_support::schemars08::Map::new();
+                let rust_type = ::#oxide_generation_crate::macro_support::serde_json::json!({
                     "crate": #crate_name,
                     "version": #version,
                     "path": #full_path,

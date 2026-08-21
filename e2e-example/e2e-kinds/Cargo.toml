@@ -8,12 +8,12 @@ rust-version.workspace = true
 publish = false
 
 [dependencies]
-oxide-typed-generation = { workspace = true, features = ["schemars08", "serde"] }
-oxide-typed-generation-macros.workspace = true
+oxide-generation = { workspace = true, features = ["schemars08", "serde"] }
+oxide-generation-macros.workspace = true
 serde = { workspace = true, features = ["derive"] }
 
 [features]
-schemars08 = ["oxide-typed-generation/schemars08"]
+schemars08 = ["oxide-generation/schemars08"]
 
 [package.metadata.release]
 release = false

@@ -1,8 +1,8 @@
-use oxide_typed_generation_macros::impl_typed_generation_kinds;
+use oxide_generation_macros::impl_typed_generation_kinds;
 
 impl_typed_generation_kinds! {
     settings = {
-        oxide_typed_generation_crate = nonexistent_crate,
+        oxide_generation_crate = nonexistent_crate,
     },
     kinds = {
         User = {},

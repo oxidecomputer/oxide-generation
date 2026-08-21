@@ -3,9 +3,9 @@
 //! This crate defines the generation kinds used by both the producer and
 //! consumer in the end-to-end JSON schema example.
 
-use oxide_typed_generation_macros::impl_typed_generation_kinds;
+use oxide_generation_macros::impl_typed_generation_kinds;
 
-// Use the oxide-typed-generation-macros crate to define typed generation kinds.
+// Use the oxide-generation-macros crate to define typed generation kinds.
 impl_typed_generation_kinds! {
     settings = {
         // Defining the `schemars08` entry causes the kinds to implement

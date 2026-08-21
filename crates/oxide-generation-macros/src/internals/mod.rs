@@ -1,4 +1,4 @@
-//! Internal implementation for oxide-typed-generation-macros.
+//! Internal implementation for oxide-generation-macros.
 //!
 //! This module is imported by both the proc macro and by snapshot tests.
 
