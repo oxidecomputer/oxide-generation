@@ -129,7 +129,7 @@
 //!
 //! # Minimum supported Rust version (MSRV)
 //!
-//! The MSRV of this crate is **Rust 1.85.** In general, this crate will follow the MSRV of its
+//! The MSRV of this crate is **Rust 1.88.** In general, this crate will follow the MSRV of its
 //! dependencies, with an aim to be conservative.
 //!
 //! Within the 0.x series, MSRV updates will be accompanied by a minor version bump.
