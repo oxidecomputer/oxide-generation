@@ -9,7 +9,6 @@ publish = false
 datatest-stable.workspace = true
 expectorate.workspace = true
 heck.workspace = true
-oxide-generation-macros.workspace = true
 oxide-generation.workspace = true
 prettyplease.workspace = true
 proc-macro2.workspace = true
@@ -24,6 +23,7 @@ test-strategy = { workspace = true, optional = true }
 typify = { workspace = true, optional = true }
 
 [dev-dependencies]
+oxide-generation-macros.workspace = true
 trybuild.workspace = true
 
 [features]
@@ -47,3 +47,6 @@ harness = false
 
 [package.metadata.release]
 release = false
+
+[lints]
+workspace = true

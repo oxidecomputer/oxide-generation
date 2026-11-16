@@ -5,7 +5,7 @@
 ![License: MIT OR Apache-2.0](https://img.shields.io/crates/l/oxide-generation-macros.svg?)
 [![crates.io](https://img.shields.io/crates/v/oxide-generation-macros.svg?logo=rust)](https://crates.io/crates/oxide-generation-macros)
 [![docs.rs](https://img.shields.io/docsrs/oxide-generation-macros.svg?logo=docs.rs)](https://docs.rs/oxide-generation-macros)
-[![Rust: ^1.85.0](https://img.shields.io/badge/rust-^1.85.0-93450a.svg?logo=rust)](https://doc.rust-lang.org/cargo/reference/manifest.html#the-rust-version-field)
+[![Rust: ^1.88.0](https://img.shields.io/badge/rust-^1.88.0-93450a.svg?logo=rust)](https://doc.rust-lang.org/cargo/reference/manifest.html#the-rust-version-field)
 <!-- cargo-sync-rdme ]] -->
 <!-- cargo-sync-rdme rustdoc [[ -->
 Procedural macro for [`oxide-generation`](https://docs.rs/oxide-generation).

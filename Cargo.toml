@@ -6,7 +6,7 @@ members = ["crates/*", "e2e-example/*"]
 edition = "2024"
 license = "MIT OR Apache-2.0"
 repository = "https://github.com/oxidecomputer/oxide-generation"
-rust-version = "1.85"
+rust-version = "1.88"
 
 [workspace.dependencies]
 daft = { version = "0.1.8", default-features = false }

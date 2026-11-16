@@ -5,7 +5,7 @@
 ![License: MIT OR Apache-2.0](https://img.shields.io/crates/l/oxide-generation.svg?)
 [![crates.io](https://img.shields.io/crates/v/oxide-generation.svg?logo=rust)](https://crates.io/crates/oxide-generation)
 [![docs.rs](https://img.shields.io/docsrs/oxide-generation.svg?logo=docs.rs)](https://docs.rs/oxide-generation)
-[![Rust: ^1.85.0](https://img.shields.io/badge/rust-^1.85.0-93450a.svg?logo=rust)](https://doc.rust-lang.org/cargo/reference/manifest.html#the-rust-version-field)
+[![Rust: ^1.88.0](https://img.shields.io/badge/rust-^1.88.0-93450a.svg?logo=rust)](https://doc.rust-lang.org/cargo/reference/manifest.html#the-rust-version-field)
 <!-- cargo-sync-rdme ]] -->
 <!-- cargo-sync-rdme rustdoc [[ -->
 Untyped and typed generation numbers.
@@ -136,7 +136,7 @@ provided. This trait also permits conversions between typed and untyped generati
 
 ## Minimum supported Rust version (MSRV)
 
-The MSRV of this crate is **Rust 1.85.** In general, this crate will follow the MSRV of its
+The MSRV of this crate is **Rust 1.88.** In general, this crate will follow the MSRV of its
 dependencies, with an aim to be conservative.
 
 Within the 0.x series, MSRV updates will be accompanied by a minor version bump.
